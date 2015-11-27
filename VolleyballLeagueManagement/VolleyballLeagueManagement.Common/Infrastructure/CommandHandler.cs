@@ -22,10 +22,13 @@ namespace VolleyballLeagueManagement.Common.Infrastructure
         /// <summary>
         /// Command handler with explicit failure handler.
         /// </summary>
-        public ActionResult HandleCommand<TCommand>(TCommand command,
-            ActionResult successResult, ModelStateDictionary modelState,
-            HttpContextBase httpContext,
-            Func<ModelStateDictionary, string, ActionResult> failureResultHandler) where TCommand : ICommand
+        public ActionResult HandleCommand<TCommand>(
+                TCommand command,
+                ActionResult successResult, 
+                ModelStateDictionary modelState,
+                HttpContextBase httpContext,
+                Func<ModelStateDictionary, string, ActionResult> failureResultHandler
+            ) where TCommand : ICommand
         {
             if (modelState.IsValid)
             {

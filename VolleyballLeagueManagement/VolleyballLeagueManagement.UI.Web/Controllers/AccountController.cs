@@ -1,8 +1,6 @@
-﻿using System.Web.Mvc;
-
-namespace VolleyballLeagueManagement.UI.Web.Controllers
+﻿namespace VolleyballLeagueManagement.UI.Web.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         
     }
