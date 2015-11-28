@@ -30,7 +30,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,14 +48,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Commands\AddUserCommand.cs" />
+    <Compile Include="Domain\Commands\ChangeEmailCommand.cs" />
+    <Compile Include="Domain\Commands\ChangePasswordCommand.cs" />
+    <Compile Include="Domain\Commands\RemoveUserCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateUserAddressCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateUserDataCommand.cs" />
+    <Compile Include="Domain\Commands\ChangeUserRole.cs" />
+    <Compile Include="Domain\Handlers\UserAccountCommandHandler.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\BootstrapUserAccountContext.cs" />
+    <Compile Include="Model\Migrations\201511280903508_InitialMigration.cs" />
+    <Compile Include="Model\Migrations\201511280903508_InitialMigration.Designer.cs">
+      <DependentUpon>201511280903508_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\Configuration.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserAccountDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Commands\" />
-    <Folder Include="Domain\Handlers\" />
     <Folder Include="Domain\Services\" />
-    <Folder Include="Model\Migrations\" />
     <Folder Include="QueryObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
+      <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
+      <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\Migrations\201511280903508_InitialMigration.resx">
+      <DependentUpon>201511280903508_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
