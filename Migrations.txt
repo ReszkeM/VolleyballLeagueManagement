@@ -1,0 +1,7 @@
+enable-migrations -ContextProjectName X -StartUpProjectName X -ContextTypeName X -ProjectName X -Verbose
+
+add-migration -StartUpProjectName X -configuration X -ProjectName X MigrationName
+
+Update-Database -StartUpProjectName X -configuration X -ProjectName X -Verbose
+
+
