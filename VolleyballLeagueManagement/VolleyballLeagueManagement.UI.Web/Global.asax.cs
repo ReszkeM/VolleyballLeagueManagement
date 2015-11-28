@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
+using VolleyballLeagueManagement.UsersAccounts.Model;
+using VolleyballLeagueManagement.UsersAccounts.Model.Migrations;
 
 namespace VolleyballLeagueManagement.UI.Web
 {
@@ -19,14 +22,18 @@ namespace VolleyballLeagueManagement.UI.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            // initialize contexts
+            var userAccountDataContext = new UserAccountDataContext();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserAccountDataContext, Configuration>());
+            userAccountDataContext.Database.Initialize(false);
 
             BootstrapContexts();
         }
 
         private void BootstrapContexts()
         {
-            // register handlers
+            var userAccountBootstrap = new BootstrapUserAccountContext(MvcApplication.MessageBus);
+            userAccountBootstrap.RegisterCommandHandlers();
+            userAccountBootstrap.RegisterEventHandlers();
         }
     }
 }

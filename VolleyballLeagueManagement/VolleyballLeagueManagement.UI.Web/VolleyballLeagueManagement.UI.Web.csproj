@@ -232,6 +232,14 @@
       <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
       <Name>VolleyballLeagueManagement.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.UsersAccounts.Contracts\VolleyballLeagueManagement.UsersAccounts.Contracts.csproj">
+      <Project>{c69b2ada-bdac-4b62-a1de-7bb42c3f7147}</Project>
+      <Name>VolleyballLeagueManagement.UsersAccounts.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.UsersAccounts\VolleyballLeagueManagement.UsersAccounts.csproj">
+      <Project>{D753D7A4-1E54-4A35-91B8-AC75FCCA0381}</Project>
+      <Name>VolleyballLeagueManagement.UsersAccounts</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
