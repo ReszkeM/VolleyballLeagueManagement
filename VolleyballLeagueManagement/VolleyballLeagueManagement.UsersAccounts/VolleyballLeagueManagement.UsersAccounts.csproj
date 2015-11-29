@@ -58,7 +58,7 @@
     <Compile Include="Domain\Commands\RemoveUserCommand.cs" />
     <Compile Include="Domain\Commands\UpdateUserAddressCommand.cs" />
     <Compile Include="Domain\Commands\UpdateUserDataCommand.cs" />
-    <Compile Include="Domain\Commands\ChangeUserRole.cs" />
+    <Compile Include="Domain\Commands\ChangeUserRoleCommand.cs" />
     <Compile Include="Domain\Handlers\UserAccountCommandHandler.cs" />
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\BootstrapUserAccountContext.cs" />

@@ -6,8 +6,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels
     {
         public int Id { get; set; }
 
-        public int AddressId { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -26,7 +24,14 @@ namespace VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels
 
         public Role Role { get; set; }
 
+        public string City { get; set; }
 
-        public AddressViewModel Address { get; set; }
+        public string Street { get; set; }
+
+        public string HomeNumber { get; set; }
+
+        public string FlatNumber { get; set; }
+
+        public string PostCode { get; set; }
     }
 }
