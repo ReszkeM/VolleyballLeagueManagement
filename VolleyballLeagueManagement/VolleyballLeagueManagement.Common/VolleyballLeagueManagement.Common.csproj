@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\Position.cs" />
+    <Compile Include="Enums\Role.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Infrastructure\CommandHandler.cs" />
     <Compile Include="Infrastructure\DatabaseInitializer.cs" />
     <Compile Include="Infrastructure\MessageBus.cs" />
@@ -68,7 +70,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
