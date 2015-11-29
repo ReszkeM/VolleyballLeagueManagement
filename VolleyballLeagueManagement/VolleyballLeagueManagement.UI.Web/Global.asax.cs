@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Web.Script.Serialization;
+using System.Web.Security;
+using VolleyballLeagueManagement.Common.Authentication;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
 using VolleyballLeagueManagement.UsersAccounts.Model;
@@ -27,6 +31,12 @@ namespace VolleyballLeagueManagement.UI.Web
             userAccountDataContext.Database.Initialize(false);
 
             BootstrapContexts();
+        }
+
+        protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
+        {
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            CookieHandler.ReplaceCookieUser(authCookie);
         }
 
         private void BootstrapContexts()
