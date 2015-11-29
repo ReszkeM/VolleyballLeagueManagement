@@ -2,6 +2,9 @@
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Security;
+using VolleyballLeagueManagement.Common.Authentication;
 using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.Common.Infrastructure;
@@ -37,18 +40,18 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
             } 
         }
 
-        public void Handle(UpdateUserDataCommand dataCommand)
+        public void Handle(UpdateUserDataCommand command)
         {
-            ValidateCommandParameters(dataCommand);
+            ValidatePhoneNumber(command.Phone);
 
             using (var dbContext = new UserAccountDataContext())
             {
-                User user = dbContext.Users.Single(u => u.Id == dataCommand.Id);
+                User user = dbContext.Users.Single(u => u.Id == command.Id);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
-                UpdateUserEntity(user, dataCommand);
+                UpdateUserEntity(user, command);
 
                 dbContext.SaveChanges();
             } 
@@ -56,14 +59,12 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(RemoveUserCommand command)
         {
-            ValidateCommandParameters(command, command.Id);
-
             using (var dbContext = new UserAccountDataContext())
             {
                 User user = dbContext.Users.SingleOrDefault(u => u.Id == command.Id);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 // TODO Check if user have league or team
                 dbContext.Users.Remove(user);
@@ -73,14 +74,12 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(UpdateUserAddressCommand command)
         {
-            ValidateCommandParameters(command, command.UserId);
-
             using (var dbContext = new UserAccountDataContext())
             {
                 User user = dbContext.Users.SingleOrDefault(u => u.Id == command.UserId);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 UpdateUserAddres(user.Address, command);
 
@@ -97,7 +96,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 User user = dbContext.Users.SingleOrDefault(u => u.Id == command.UserId);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 ChangeEmail(user, command);
 
@@ -107,14 +106,14 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(ChangePasswordCommand command)
         {
-            ValidateCommandParameters(command);
+            ValidatePasswordConfirm(command.NewPassword, command.NewPasswordRepeat);
 
             using (var dbContext = new UserAccountDataContext())
             {
                 User user = dbContext.Users.SingleOrDefault(u => u.Id == command.UserId);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 ChangePassword(user, command);
 
@@ -124,14 +123,12 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(ChangeUserRole command)
         {
-            ValidateCommandParameters(command, command.UserId);
-
             using (var dbContext = new UserAccountDataContext())
             {
                 User user = dbContext.Users.SingleOrDefault(u => u.Id == command.UserId);
 
                 if (user == null)
-                    throw new ServerSideException("User not found, try agine");
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 ChangeRole(user, command);
 
@@ -141,29 +138,29 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(LogInCommand command)
         {
-            // Create cookie
+            using (var dbContext = new UserAccountDataContext())
+            {
+                User user = dbContext.Users.SingleOrDefault(u => u.Login == command.Login);
+                ValidateLoginData(user, command);
+
+                var appUser = CreateAppUserEntity(user);
+                CookieHandler.Create(appUser);
+            }
         }
 
         public void Handle(LogOffCommand command)
         {
-            // Remove cookie
+            HttpCookie authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return;
+
+            authCookie.Expires = DateTime.Now.AddDays(-1d);
+            HttpContext.Current.Response.Cookies.Add(authCookie);
         }
 
-
-        private void ValidateCommandParameters(ICommand command, int userId)
-        {
-            if (command == null)
-                throw new ArgumentNullException("command", "Command is empty. Something went wrong!");
-
-            if (userId == 0)
-                throw new ServerSideException("UserId cannot be 0");
-        }
 
         private void ValidateCommandParameters(AddUserCommand command)
         {
-            if (command == null)
-                throw new ArgumentNullException("command", "Command is empty. Something went wrong!");
-
             if (!Regex.IsMatch(command.Phone, @"^\d+$"))
                 throw new ServerSideException("Phone number is invalid");
 
@@ -174,18 +171,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 throw new ServerSideException("Passwords does not match");
         }
 
-        private void ValidateCommandParameters(UpdateUserDataCommand command)
-        {
-            ValidateCommandParameters(command, command.Id);
-
-            if (!Regex.IsMatch(command.Phone, @"^\d+$"))
-                throw new ServerSideException("Phone number is invalid");
-        }
-
         private void ValidateCommandParameters(ChangeEmailCommand command)
         {
-            ValidateCommandParameters(command, command.UserId);
-
             if (!IsValidEmail(command.OldEmail))
                 throw new ServerSideException("Your old email has invalid format");
 
@@ -199,12 +186,16 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 throw new ServerSideException("Emails does not match");
         }
 
-        private void ValidateCommandParameters(ChangePasswordCommand command)
+        private void ValidatePasswordConfirm(string newPassword, string newPasswordRepeat)
         {
-            ValidateCommandParameters(command, command.UserId);
-
-            if (command.NewPassword != command.NewPasswordRepeat)
+            if (newPassword != newPasswordRepeat)
                 throw new ServerSideException("Passwords does not match");
+        }
+
+        private void ValidatePhoneNumber(string phoneNumber)
+        {
+            if (!Regex.IsMatch(phoneNumber, @"^\d+$"))
+                throw new ServerSideException("Phone number is invalid");
         }
 
         private void ValidateLogin(UserAccountDataContext dc, string login)
@@ -223,6 +214,16 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
             if (user != null)
                 throw new ServerSideException(String.Format(
                     "This email: {0}, is already in use", email));
+        }
+
+        private void ValidateLoginData(User user, LogInCommand command)
+        {
+            if (user == null)
+                throw new ServerSideException(
+                    String.Format("User with login: {0} not found, try agine", command.Login));
+
+            if (!command.Password.CompareWithHash(user.Password))
+                throw new ServerSideException("Wrong password");
         }
 
         private bool IsValidEmail(string emailaddress)
@@ -259,6 +260,16 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     FlatNumber = command.FlatNumber,
                     PostCode = command.PostCode
                 }
+            };
+        }
+
+        private ApplicationUser CreateAppUserEntity(User user)
+        {
+            return new ApplicationUser
+            {
+                Id = user.Id,
+                Login = user.Login,
+                Role = user.Role.ToString()
             };
         }
 
