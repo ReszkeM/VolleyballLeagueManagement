@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels;
 using VolleyballLeagueManagement.UsersAccounts.Domain.Commands;
 
 namespace VolleyballLeagueManagement.UI.Web.Controllers
@@ -9,8 +8,7 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult Register()
         {
-            var model = new UserViewModel();
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -18,7 +16,43 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         {
             HandleCommand(command, Json("User added"));
 
-            return RedirectToAction("About", "Home");
+            return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LogInCommand command)
+        {
+            HandleCommand(command, Json("LoggIn"));
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public ActionResult LogOff()
+        {
+            var command = new LogOffCommand();
+
+            HandleCommand(command, Json("LogOff"));
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordCommand command)
+        {
+            return RedirectToAction("Login");
         }
     }
 }

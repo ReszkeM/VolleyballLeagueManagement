@@ -52,6 +52,7 @@
     <Compile Include="Domain\Commands\AddUserCommand.cs" />
     <Compile Include="Domain\Commands\ChangeEmailCommand.cs" />
     <Compile Include="Domain\Commands\ChangePasswordCommand.cs" />
+    <Compile Include="Domain\Commands\ForgotPasswordCommand.cs" />
     <Compile Include="Domain\Commands\LogInCommand.cs" />
     <Compile Include="Domain\Commands\LogOffCommand.cs" />
     <Compile Include="Domain\Commands\RemoveUserCommand.cs" />
