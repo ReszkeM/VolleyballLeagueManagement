@@ -1,0 +1,34 @@
+﻿@model VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels.UserViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+    <h4>Change your account settings</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Data:</dt>
+        <dd>
+            @Html.ActionLink("Change your data", "ChangeData")
+        </dd>
+        <dt>Address:</dt>
+        <dd>
+            @Html.ActionLink("Change your address", "ChangeAddress")
+        </dd>
+        <dt>Role:</dt>
+        <dd>
+            @Html.ActionLink("Change your role", "ChangeRole")
+        </dd>
+        <dt>Email:</dt>
+        <dd>
+            @Html.ActionLink("Change your email", "ChangeEmail")
+        </dd>
+        <dt>Password:</dt>
+        <dd>
+            @Html.ActionLink("Change your password", "ChangePassword")
+        </dd>
+    </dl>
+</div>

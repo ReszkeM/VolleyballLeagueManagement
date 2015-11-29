@@ -46,7 +46,6 @@
     <Compile Include="ViewModels\ChangeUserRoleViewModel.cs" />
     <Compile Include="ViewModels\ForgotPasswordViewModel.cs" />
     <Compile Include="ViewModels\LogInViewModel.cs" />
-    <Compile Include="ViewModels\UserAddress.cs" />
     <Compile Include="ViewModels\UserDataViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>

@@ -160,7 +160,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\AccountManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,9 +215,14 @@
     <Content Include="Scripts\libraries\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\AccountManagement\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\AccountManagement\ChangeData.cshtml" />
+    <Content Include="Views\AccountManagement\ChangeAddress.cshtml" />
+    <Content Include="Views\AccountManagement\ChangeRole.cshtml" />
+    <Content Include="Views\AccountManagement\ChangeEmail.cshtml" />
+    <Content Include="Views\AccountManagement\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
