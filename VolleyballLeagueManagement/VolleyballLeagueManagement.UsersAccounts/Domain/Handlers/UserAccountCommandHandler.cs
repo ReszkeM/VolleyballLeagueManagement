@@ -9,7 +9,6 @@ using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces;
-using VolleyballLeagueManagement.Common.Interfaces.Messaging;
 using VolleyballLeagueManagement.UsersAccounts.Domain.Commands;
 using VolleyballLeagueManagement.UsersAccounts.Model;
 
@@ -23,7 +22,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         IHandler<ChangePasswordCommand>,
         IHandler<ChangeUserRole>,
         IHandler<LogInCommand>,
-        IHandler<LogOffCommand>
+        IHandler<LogOffCommand>,
+        IHandler<ForgotPasswordCommand>
     {
         public void Handle(AddUserCommand command)
         {
@@ -37,6 +37,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 User user = CreateUserEntity(command);
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
+
+                // TODO add event: User registered - send confirm email
             } 
         }
 
@@ -54,6 +56,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 UpdateUserEntity(user, command);
 
                 dbContext.SaveChanges();
+
+                // TODO add event: User updated - send email
             } 
         }
 
@@ -67,8 +71,11 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 // TODO Check if user have league or team
+                // if user have league or team then cant delete account
                 dbContext.Users.Remove(user);
                 dbContext.SaveChanges();
+
+                // TODO add event: User deleted - send email
             } 
         }
 
@@ -84,6 +91,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 UpdateUserAddres(user.Address, command);
 
                 dbContext.SaveChanges();
+
+                // TODO add event: User change address - send email
             } 
         }
 
@@ -101,6 +110,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 ChangeEmail(user, command);
 
                 dbContext.SaveChanges();
+
+                // TODO add event: User email changed - send confirm email
             } 
         }
 
@@ -118,6 +129,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 ChangePassword(user, command);
 
                 dbContext.SaveChanges();
+
+                // TODO add event: User changed password - send confirm email
             } 
         }
 
@@ -130,9 +143,14 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 if (user == null)
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
+                // TODO Check if user have league or team
+                // if user have league or team then cant change role
+
                 ChangeRole(user, command);
 
                 dbContext.SaveChanges();
+
+                // TODO add event: User change role - send email
             } 
         }
 
@@ -144,7 +162,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 ValidateLoginData(user, command);
 
                 var appUser = CreateAppUserEntity(user);
-                CookieHandler.Create(appUser);
+                CookieHandler.Create(appUser, command.RememberMe);
             }
         }
 
@@ -156,6 +174,24 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
             authCookie.Expires = DateTime.Now.AddDays(-1d);
             HttpContext.Current.Response.Cookies.Add(authCookie);
+        }
+
+        public void Handle(ForgotPasswordCommand command)
+        {
+            if (!IsValidEmail(command.Email))
+                throw new ServerSideException("Email format is invalid");
+
+            using (var dbContext = new UserAccountDataContext())
+            {
+                var user = dbContext.Users.SingleOrDefault(u => u.Email == command.Email);
+
+                if (user == null)
+                    throw new ServerSideException(
+                        String.Format("User with email: {0} does not exist", command.Email));
+
+                // TODO Generate new password
+                // TODO Send email with new password
+            } 
         }
 
 
