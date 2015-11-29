@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 using VolleyballLeagueManagement.Common.Enums;
+using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
@@ -17,7 +18,9 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         IHandler<UpdateUserAddressCommand>,
         IHandler<ChangeEmailCommand>,
         IHandler<ChangePasswordCommand>,
-        IHandler<ChangeUserRole>
+        IHandler<ChangeUserRole>,
+        IHandler<LogInCommand>,
+        IHandler<LogOffCommand>
     {
         public void Handle(AddUserCommand command)
         {
@@ -25,6 +28,9 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
             using (var dbContext = new UserAccountDataContext())
             {
+                ValidateLogin(dbContext, command.Login);
+                ValidateEmail(dbContext, command.Email);
+
                 User user = CreateUserEntity(command);
                 dbContext.Users.Add(user);
                 dbContext.SaveChanges();
@@ -133,6 +139,16 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
             } 
         }
 
+        public void Handle(LogInCommand command)
+        {
+            // Create cookie
+        }
+
+        public void Handle(LogOffCommand command)
+        {
+            // Remove cookie
+        }
+
 
         private void ValidateCommandParameters(ICommand command, int userId)
         {
@@ -191,6 +207,24 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 throw new ServerSideException("Passwords does not match");
         }
 
+        private void ValidateLogin(UserAccountDataContext dc, string login)
+        {
+            var user = dc.Users.FirstOrDefault(u => u.Login == login);
+
+            if (user != null)
+                throw new ServerSideException(String.Format(
+                    "A user with the login name: {0}, already exists", login));
+        }
+
+        private void ValidateEmail(UserAccountDataContext dc, string email)
+        {
+            var user = dc.Users.FirstOrDefault(u => u.Email == email);
+
+            if (user != null)
+                throw new ServerSideException(String.Format(
+                    "This email: {0}, is already in use", email));
+        }
+
         private bool IsValidEmail(string emailaddress)
         {
             try
@@ -212,7 +246,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 Login = command.Login,
-                Password = command.Password,
+                Password = command.Password.Encrypt(),
                 Email = command.Email,
                 Phone = command.Phone,
                 Role = (Role) command.RoleValue,
@@ -255,10 +289,10 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         private void ChangePassword(User user, ChangePasswordCommand command)
         {
-            if (user.Password != command.OldPassword)
+            if (!command.OldPassword.CompareWithHash(user.Password))
                 throw new ServerSideException("Old password and user password does not match");
 
-            user.Password = command.NewPassword;
+            user.Password = command.NewPassword.Encrypt();
         }
 
         private void ChangeRole(User user, ChangeUserRole command)
