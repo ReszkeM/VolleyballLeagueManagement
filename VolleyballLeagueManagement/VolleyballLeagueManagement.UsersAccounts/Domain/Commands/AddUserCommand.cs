@@ -18,7 +18,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Commands
 
         public string Phone { get; set; }
 
-        public int RoleValue { get; set; }
+        public int Role { get; set; }
 
 
         public string City { get; set; }

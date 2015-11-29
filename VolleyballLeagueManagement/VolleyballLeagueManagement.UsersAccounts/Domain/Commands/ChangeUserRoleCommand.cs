@@ -2,7 +2,7 @@
 
 namespace VolleyballLeagueManagement.UsersAccounts.Domain.Commands
 {
-    public class ChangeUserRole : ICommand
+    public class ChangeUserRoleCommand : ICommand
     {
         public int UserId { get; set; }
 

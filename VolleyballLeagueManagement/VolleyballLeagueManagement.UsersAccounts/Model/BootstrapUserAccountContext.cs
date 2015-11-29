@@ -22,7 +22,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Model
             bus.RegisterHandler<UpdateUserAddressCommand>(management.Handle);
             bus.RegisterHandler<ChangeEmailCommand>(management.Handle);
             bus.RegisterHandler<ChangePasswordCommand>(management.Handle);
-            bus.RegisterHandler<ChangeUserRole>(management.Handle);
+            bus.RegisterHandler<ChangeUserRoleCommand>(management.Handle);
             bus.RegisterHandler<LogInCommand>(management.Handle);
             bus.RegisterHandler<LogOffCommand>(management.Handle);
         }

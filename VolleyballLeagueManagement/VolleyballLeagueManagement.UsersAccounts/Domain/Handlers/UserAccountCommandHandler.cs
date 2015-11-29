@@ -20,7 +20,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         IHandler<UpdateUserAddressCommand>,
         IHandler<ChangeEmailCommand>,
         IHandler<ChangePasswordCommand>,
-        IHandler<ChangeUserRole>,
+        IHandler<ChangeUserRoleCommand>,
         IHandler<LogInCommand>,
         IHandler<LogOffCommand>,
         IHandler<ForgotPasswordCommand>
@@ -134,7 +134,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
             } 
         }
 
-        public void Handle(ChangeUserRole command)
+        public void Handle(ChangeUserRoleCommand command)
         {
             using (var dbContext = new UserAccountDataContext())
             {
@@ -286,7 +286,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 Password = command.Password.Encrypt(),
                 Email = command.Email,
                 Phone = command.Phone,
-                Role = (Role) command.RoleValue,
+                Role = (Role) command.Role,
                 IsAccountConfirmed = false,
                 Address = new Address
                 {
@@ -342,7 +342,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
             user.Password = command.NewPassword.Encrypt();
         }
 
-        private void ChangeRole(User user, ChangeUserRole command)
+        private void ChangeRole(User user, ChangeUserRoleCommand command)
         {
             // TODO Check if user have league or team
 
