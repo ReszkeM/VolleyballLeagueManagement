@@ -1,0 +1,28 @@
+﻿body {
+    background-color: #181818;
+    color: #ffffff;
+}
+
+.navbar-inverse {
+    background-color: #181818;
+    border: none;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+   color: #ffffff;
+}
+
+.navbar-inverse .navbar-header .navbar-brand{
+   color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+    color: #808080;
+}
+
+.navbar-inverse .navbar-header .navbar-brand a:hover,
+.navbar-inverse .navbar-header .navbar-brand a:focus {
+    color: #808080;
+}
+
