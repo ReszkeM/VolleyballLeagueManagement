@@ -225,6 +225,8 @@
     <Content Include="Views\AccountManagement\ChangeRole.cshtml" />
     <Content Include="Views\AccountManagement\ChangeEmail.cshtml" />
     <Content Include="Views\AccountManagement\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ConfirmAccount.cshtml" />
+    <Content Include="Views\AccountManagement\RemoveAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

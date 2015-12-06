@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using VolleyballLeagueManagement.UsersAccounts.Domain.Commands;
 
 namespace VolleyballLeagueManagement.UI.Web.Controllers
@@ -53,6 +54,19 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         public ActionResult ForgotPassword(ForgotPasswordCommand command)
         {
             return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmAccount(Guid confirmGuid)
+        {
+            var command = new ConfirmAccountCommand
+            {
+                ConfirmGuid = confirmGuid
+            };
+
+            HandleCommand(command, Json("User confirmed"));
+
+            return View();
         }
     }
 }

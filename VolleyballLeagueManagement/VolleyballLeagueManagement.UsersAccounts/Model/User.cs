@@ -1,4 +1,5 @@
-﻿using VolleyballLeagueManagement.Common.Enums;
+﻿using System;
+using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.UsersAccounts.Model
 {
@@ -24,9 +25,17 @@ namespace VolleyballLeagueManagement.UsersAccounts.Model
 
         public bool IsAccountConfirmed { get; set; }
 
+        public Guid ConfirmGuid { get; set; }
+
         public Role Role { get; set; }
 
 
         public virtual Address Address { get; set; }
+
+
+        public void ConfirmAccount()
+        {
+            this.IsAccountConfirmed = true;
+        }
     }
 }

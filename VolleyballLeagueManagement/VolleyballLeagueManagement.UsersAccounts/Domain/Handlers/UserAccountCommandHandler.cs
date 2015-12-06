@@ -23,7 +23,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         IHandler<ChangeUserRoleCommand>,
         IHandler<LogInCommand>,
         IHandler<LogOffCommand>,
-        IHandler<ForgotPasswordCommand>
+        IHandler<ForgotPasswordCommand>,
+        IHandler<ConfirmAccountCommand>
     {
         public void Handle(AddUserCommand command)
         {
@@ -75,7 +76,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 dbContext.Users.Remove(user);
                 dbContext.SaveChanges();
 
-                // TODO add event: User deleted - send email
+                // TODO add event: User deleted - send email - delete cookie
             } 
         }
 
@@ -191,6 +192,19 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
                 // TODO Generate new password
                 // TODO Send email with new password
+            } 
+        }
+
+        public void Handle(ConfirmAccountCommand command)
+        {
+            using (var dbContext = new UserAccountDataContext())
+            {
+                User user = dbContext.Users.SingleOrDefault(u => u.ConfirmGuid == command.ConfirmGuid);
+
+                if (user == null)
+                    throw new ServerSideException("User not find, check your activate link and try agine, or contact us");
+
+                user.ConfirmAccount();
             } 
         }
 

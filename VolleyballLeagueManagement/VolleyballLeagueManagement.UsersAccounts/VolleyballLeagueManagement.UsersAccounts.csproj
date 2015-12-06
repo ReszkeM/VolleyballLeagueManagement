@@ -52,6 +52,7 @@
     <Compile Include="Domain\Commands\AddUserCommand.cs" />
     <Compile Include="Domain\Commands\ChangeEmailCommand.cs" />
     <Compile Include="Domain\Commands\ChangePasswordCommand.cs" />
+    <Compile Include="Domain\Commands\ConfirmAccountCommand.cs" />
     <Compile Include="Domain\Commands\ForgotPasswordCommand.cs" />
     <Compile Include="Domain\Commands\LogInCommand.cs" />
     <Compile Include="Domain\Commands\LogOffCommand.cs" />
@@ -65,6 +66,10 @@
     <Compile Include="Model\Migrations\201511280903508_InitialMigration.cs" />
     <Compile Include="Model\Migrations\201511280903508_InitialMigration.Designer.cs">
       <DependentUpon>201511280903508_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512061641164_AddGuidForAccountConfirmation.cs" />
+    <Compile Include="Model\Migrations\201512061641164_AddGuidForAccountConfirmation.Designer.cs">
+      <DependentUpon>201512061641164_AddGuidForAccountConfirmation.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\User.cs" />
@@ -88,6 +93,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Model\Migrations\201511280903508_InitialMigration.resx">
       <DependentUpon>201511280903508_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512061641164_AddGuidForAccountConfirmation.resx">
+      <DependentUpon>201512061641164_AddGuidForAccountConfirmation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -80,5 +80,19 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult RemoveAccount()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RemoveAccount(RemoveUserCommand command)
+        {
+            HandleCommand(command, Json("User removed"));
+
+            return RedirectToAction("Index");
+        }
     }
 }
