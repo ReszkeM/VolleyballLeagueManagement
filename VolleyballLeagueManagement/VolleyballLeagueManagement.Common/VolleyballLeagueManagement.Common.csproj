@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Authentication\ApplicationUser.cs" />
     <Compile Include="Authentication\CookieHandler.cs" />
+    <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="Authentication\LeaguePrincipal.cs" />
     <Compile Include="Authentication\LeaguePrincipalSerializeModel.cs" />
     <Compile Include="Enums\Position.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CustomAttributes\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>

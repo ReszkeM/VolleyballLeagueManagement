@@ -1,4 +1,5 @@
 ﻿using System.Security.Principal;
+using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.Common.Authentication
 {
@@ -22,6 +23,11 @@ namespace VolleyballLeagueManagement.Common.Authentication
         public bool IsInRole(string role)
         {
             return Role == role;
+        }
+
+        public bool IsInRole(Role role)
+        {
+            return Role == role.ToString();
         }
     }
 }
