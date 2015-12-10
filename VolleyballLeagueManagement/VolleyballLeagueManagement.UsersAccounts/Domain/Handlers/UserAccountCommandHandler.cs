@@ -2,8 +2,6 @@
 using System.Linq;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Web.Security;
 using VolleyballLeagueManagement.Common.Authentication;
 using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Common.Extensions;
@@ -55,10 +53,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 UpdateUserEntity(user, command);
-
                 dbContext.SaveChanges();
-
-                // TODO add event: User updated - send email
             } 
         }
 
@@ -66,7 +61,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         {
             using (var dbContext = new UserAccountDataContext())
             {
-                User user = dbContext.Users.SingleOrDefault(u => u.Id == command.Id);
+                User user = dbContext.Users.SingleOrDefault(u => u.Id == command.UserId);
 
                 if (user == null)
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
@@ -76,7 +71,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 dbContext.Users.Remove(user);
                 dbContext.SaveChanges();
 
-                // TODO add event: User deleted - send email - delete cookie
+                // TODO create event - user removed - LogOff
             } 
         }
 
@@ -90,10 +85,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 UpdateUserAddres(user.Address, command);
-
                 dbContext.SaveChanges();
-
-                // TODO add event: User change address - send email
             } 
         }
 
@@ -109,7 +101,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 ChangeEmail(user, command);
-
                 dbContext.SaveChanges();
 
                 // TODO add event: User email changed - send confirm email
@@ -128,10 +119,9 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 ChangePassword(user, command);
-
                 dbContext.SaveChanges();
 
-                // TODO add event: User changed password - send confirm email
+                // TODO add event: User changed password - send email with new password
             } 
         }
 
@@ -148,10 +138,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 // if user have league or team then cant change role
 
                 ChangeRole(user, command);
-
                 dbContext.SaveChanges();
-
-                // TODO add event: User change role - send email
             } 
         }
 
@@ -169,12 +156,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         public void Handle(LogOffCommand command)
         {
-            HttpCookie authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (authCookie == null)
-                return;
-
-            authCookie.Expires = DateTime.Now.AddDays(-1d);
-            HttpContext.Current.Response.Cookies.Add(authCookie);
+            CookieHandler.Remove();
         }
 
         public void Handle(ForgotPasswordCommand command)
@@ -347,6 +329,8 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 throw new ServerSideException("Old email and user email does not match");
 
             user.Email = command.NewEmail;
+            user.IsAccountConfirmed = false;
+            user.ConfirmGuid = new Guid();
         }
 
         private void ChangePassword(User user, ChangePasswordCommand command)
@@ -361,7 +345,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         {
             // TODO Check if user have league or team
 
-            user.Role = (Role) command.RoleValue;
+            user.Role = (Role) command.Role;
         }
     }
 }

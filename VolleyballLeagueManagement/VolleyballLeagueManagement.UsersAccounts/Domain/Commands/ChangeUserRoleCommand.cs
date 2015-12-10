@@ -6,6 +6,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Commands
     {
         public int UserId { get; set; }
 
-        public int RoleValue { get; set; }
+        public int Role { get; set; }
     }
 }

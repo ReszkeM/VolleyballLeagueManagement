@@ -19,9 +19,9 @@
         @Html.HiddenFor(model => model.UserId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RoleValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Role", EnumHelper.GetSelectList(typeof(Role)), new { @class = "form-control col-md-3" })
+                @Html.DropDownListFor(model => model.Role, EnumHelper.GetSelectList(typeof(Role)), new { @class = "form-control col-md-3" })
             </div>
         </div>
 

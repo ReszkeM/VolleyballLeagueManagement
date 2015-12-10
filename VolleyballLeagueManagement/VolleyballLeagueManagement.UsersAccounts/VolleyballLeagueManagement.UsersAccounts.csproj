@@ -79,15 +79,19 @@
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAccountDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\UserExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Services\" />
-    <Folder Include="QueryObjects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
       <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
       <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.UsersAccounts.Contracts\VolleyballLeagueManagement.UsersAccounts.Contracts.csproj">
+      <Project>{C69B2ADA-BDAC-4B62-A1DE-7BB42C3F7147}</Project>
+      <Name>VolleyballLeagueManagement.UsersAccounts.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

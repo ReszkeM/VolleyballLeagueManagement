@@ -1,15 +1,16 @@
-﻿
+﻿@model VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels.RemoveAccountViewModel
 @{
     ViewBag.Title = "RemoveAccount";
 }
 
-<h2>RemoveAccount</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>Are u sure, you want to remove your account?</p>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.UserId)
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

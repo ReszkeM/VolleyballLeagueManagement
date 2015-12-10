@@ -1,5 +1,9 @@
 ﻿using System.Web.Mvc;
+using VolleyballLeagueManagement.Common.Extensions;
+using VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels;
 using VolleyballLeagueManagement.UsersAccounts.Domain.Commands;
+using VolleyballLeagueManagement.UsersAccounts.Model;
+using VolleyballLeagueManagement.UsersAccounts.QueryObjects;
 
 namespace VolleyballLeagueManagement.UI.Web.Controllers
 {
@@ -14,7 +18,15 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult ChangeData()
         {
-            return View();
+            ChangeUserDataViewModel model;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new UserAccountDataContext())
+            {
+                model = dbContext.Users.GetUserData(user.UserId);
+            }
+
+            return View(model);
         }
         
         [HttpPost]
@@ -28,7 +40,15 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult ChangeAddress()
         {
-            return View();
+            ChangeAddressViewModel model;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new UserAccountDataContext())
+            {
+                model = dbContext.Users.GetUserAddress(user.UserId);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -42,7 +62,15 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult ChangeRole()
         {
-            return View();
+            ChangeUserRoleViewModel model;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new UserAccountDataContext())
+            {
+                model = dbContext.Users.GetUserRole(user.UserId);
+            }
+
+            return View(model);
         }
 
         [HttpPost]
@@ -56,7 +84,14 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult ChangeEmail()
         {
-            return View();
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            var model = new ChangeEmailViewModel
+            {
+                UserId = user.UserId
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -70,7 +105,14 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult ChangePassword()
         {
-            return View();
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            var model = new ChangePasswordViewModel
+            {
+                UserId = user.UserId
+            };
+
+            return View(model);
         }
 
         [HttpPost]
@@ -84,7 +126,14 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult RemoveAccount()
         {
-            return View();
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            var model = new RemoveAccountViewModel
+            {
+                UserId = user.UserId
+            };
+
+            return View(model);
         }
 
         [HttpPost]

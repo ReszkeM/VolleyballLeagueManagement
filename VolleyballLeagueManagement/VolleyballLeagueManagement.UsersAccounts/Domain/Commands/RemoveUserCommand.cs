@@ -4,6 +4,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Commands
 {
     public class RemoveUserCommand : ICommand
     {
-        public int Id { get; set; }
+        public int UserId { get; set; }
     }
 }

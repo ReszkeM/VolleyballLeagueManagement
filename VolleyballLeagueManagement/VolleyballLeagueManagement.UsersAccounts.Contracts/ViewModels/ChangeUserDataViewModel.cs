@@ -1,6 +1,6 @@
 ﻿namespace VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels
 {
-    public class UserDataViewModel
+    public class ChangeUserDataViewModel
     {
         public int Id { get; set; }
 
