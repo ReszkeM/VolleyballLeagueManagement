@@ -46,6 +46,19 @@ namespace VolleyballLeagueManagement.Common.Authentication
         }
 
         /// <summary>
+        /// Remove cookie by change expiration date
+        /// </summary>
+        public static void Remove()
+        {
+            HttpCookie authCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (authCookie == null)
+                return;
+
+            authCookie.Expires = DateTime.Now.AddDays(-1d);
+            HttpContext.Current.Response.Cookies.Add(authCookie);
+        }
+
+        /// <summary>
         /// Reading cookie and replacing HttpContext.User
         /// </summary>
         /// <param name="authCookie">cookie</param>
