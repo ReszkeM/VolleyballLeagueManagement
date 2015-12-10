@@ -71,6 +71,10 @@
     <Compile Include="Model\Migrations\201512061641164_AddGuidForAccountConfirmation.Designer.cs">
       <DependentUpon>201512061641164_AddGuidForAccountConfirmation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Migrations\201512102028006_RemovePasswordConfirmation.cs" />
+    <Compile Include="Model\Migrations\201512102028006_RemovePasswordConfirmation.Designer.cs">
+      <DependentUpon>201512102028006_RemovePasswordConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\UserAccountDataContext.cs" />
@@ -96,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512061641164_AddGuidForAccountConfirmation.resx">
       <DependentUpon>201512061641164_AddGuidForAccountConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512102028006_RemovePasswordConfirmation.resx">
+      <DependentUpon>201512102028006_RemovePasswordConfirmation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

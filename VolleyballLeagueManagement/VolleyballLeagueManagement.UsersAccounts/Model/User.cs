@@ -17,8 +17,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Model
 
         public string Password { get; set; }
 
-        public string PasswordRepeat { get; set; }
-
         public string Email { get; set; }
 
         public string Phone { get; set; }

@@ -302,6 +302,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
                 Phone = command.Phone,
                 Role = (Role) command.Role,
                 IsAccountConfirmed = false,
+                ConfirmGuid = new Guid(),
                 Address = new Address
                 {
                     City = command.City,
