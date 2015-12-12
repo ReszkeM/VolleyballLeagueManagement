@@ -14,7 +14,8 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
         IHandler<UpdateLeagueInformationsCommand>,
         IHandler<UpdateLeagueStatusCommand>,
         IHandler<UpdateRegulationsCommand>,
-        IHandler<UpdateTableOrderRulesCommand>
+        IHandler<UpdateTableOrderRulesCommand>,
+        IHandler<UpdateTeamStatusCommand>
     {
         public void Handle(CreateLeagueCommand command)
         {
@@ -122,6 +123,26 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
             }
         }
 
+        public void Handle(UpdateTeamStatusCommand command)
+        {
+            // TODO validate
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                League league = dbContext.Leagues.SingleOrDefault(l => l.Id == command.LeagueId);
+                Team team = dbContext.Teams.SingleOrDefault(l => l.Id == command.TeamId);
+
+                if (league == null || league.TeamsWaitingForApprove == null)
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
+
+                if (team == null)
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
+
+                UpdateTeamStatus(league, team, command.Accept);
+                dbContext.SaveChanges();
+            }
+        }
+
 
         private League CreateLeagueEntity(CreateLeagueCommand command)
         {
@@ -197,6 +218,23 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
             tableOrderRules.ThirdRule = command.ThirdRule;
             tableOrderRules.FourthRule = command.FourthRule;
             tableOrderRules.FifthRule = command.FifthRule;
+        }
+
+        private void UpdateTeamStatus(League league, Team team, bool accept)
+        {
+            if (accept)
+            {
+                league.TeamsWaitingForApprove.Remove(team);
+                league.Teams.Add(team);
+                team.Status = TeamStatus.Approved;
+            }
+            else
+            {
+                league.TeamsWaitingForApprove.Remove(team);
+                team.League = null;
+                team.LeagueId = null;
+                team.Status = TeamStatus.Rejected;
+            }
         }
     }
 }

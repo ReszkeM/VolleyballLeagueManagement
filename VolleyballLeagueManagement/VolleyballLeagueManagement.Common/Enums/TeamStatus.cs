@@ -5,6 +5,7 @@
         LookingForLeague,
         WaitingForApprove,
         Approved,
+        Rejected,
         InLeague,
         Removed
     }

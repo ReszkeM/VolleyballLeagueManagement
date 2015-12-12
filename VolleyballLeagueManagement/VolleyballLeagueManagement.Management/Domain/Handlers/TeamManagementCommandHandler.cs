@@ -135,9 +135,10 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
 
         private void JoinToLeague(League league, Team team)
         {
-            league.Teams.Add(team);
+            league.TeamsWaitingForApprove.Add(team);
             team.League = league;
             team.LeagueId = league.Id;
+            team.Status = TeamStatus.WaitingForApprove;
         }
 
         private void UpdateCoach(Coach coach, UpdateCoachCommand command)

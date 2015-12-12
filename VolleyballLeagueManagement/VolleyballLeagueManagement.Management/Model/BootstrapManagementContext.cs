@@ -23,6 +23,7 @@ namespace VolleyballLeagueManagement.Management.Model
             bus.RegisterHandler<UpdateLeagueStatusCommand>(leagueManagement.Handle);
             bus.RegisterHandler<UpdateRegulationsCommand>(leagueManagement.Handle);
             bus.RegisterHandler<UpdateTableOrderRulesCommand>(leagueManagement.Handle);
+            bus.RegisterHandler<UpdateTeamStatusCommand>(leagueManagement.Handle);
 
             var teamManagement = new TeamManagementCommandHandler();
             bus.RegisterHandler<AddPlayerCommand>(teamManagement.Handle);
