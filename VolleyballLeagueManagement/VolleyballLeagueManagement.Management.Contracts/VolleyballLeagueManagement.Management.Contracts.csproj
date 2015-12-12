@@ -40,11 +40,30 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AddLeagueMessageViewModel.cs" />
+    <Compile Include="ViewModels\AddPlayerViewModel.cs" />
+    <Compile Include="ViewModels\FindViewModel.cs" />
+    <Compile Include="ViewModels\LeaguePreviewViewModel.cs" />
+    <Compile Include="ViewModels\RemoveViewModel.cs" />
+    <Compile Include="ViewModels\TeamPreviewViewModel.cs" />
+    <Compile Include="ViewModels\UpdateCoachViewModel.cs" />
+    <Compile Include="ViewModels\UpdateSportsHallViewModel.cs" />
+    <Compile Include="ViewModels\UpdateLeagueInformationsViewModel.cs" />
+    <Compile Include="ViewModels\UpdateLeagueStatusViewModel.cs" />
+    <Compile Include="ViewModels\UpdateRegulationsViewModel.cs" />
+    <Compile Include="ViewModels\LeagueViewModel.cs" />
+    <Compile Include="ViewModels\TeamViewModel.cs" />
+    <Compile Include="ViewModels\UpdateTableOrderRulesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Events\" />
     <Folder Include="Enums\" />
-    <Folder Include="ViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
+      <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
+      <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

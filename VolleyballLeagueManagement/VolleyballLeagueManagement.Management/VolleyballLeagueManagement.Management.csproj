@@ -30,8 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,14 +49,108 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Commands\AddNoteLeagueCommand.cs" />
+    <Compile Include="Domain\Commands\AddPlayerCommand.cs" />
+    <Compile Include="Domain\Commands\SendMessageCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateCoachCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateDocumentCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateSportsHallCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateLeagueInformationsCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateRegulationsCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateLeagueStatusCommand.cs" />
+    <Compile Include="Domain\Commands\CreateLeagueCommand.cs" />
+    <Compile Include="Domain\Commands\CreateTeamCommand.cs" />
+    <Compile Include="Domain\Commands\JoinLeagueCommand.cs" />
+    <Compile Include="Domain\Commands\RemoveLeagueCommand.cs" />
+    <Compile Include="Domain\Commands\RemovePlayerCommand.cs" />
+    <Compile Include="Domain\Commands\RemoveTeamCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateTableOrderRulesCommand.cs" />
+    <Compile Include="Domain\Handlers\CommunicationCommandHandler.cs" />
+    <Compile Include="Domain\Handlers\LeagueManagementCommandHandler.cs" />
+    <Compile Include="Domain\Handlers\TeamManagementCommandHandler.cs" />
+    <Compile Include="Model\LeagueMessage.cs" />
+    <Compile Include="Model\Migrations\201512081249078_InitialMigration.cs" />
+    <Compile Include="Model\Migrations\201512081249078_InitialMigration.Designer.cs">
+      <DependentUpon>201512081249078_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512081254130_AddLeagueMessages.cs" />
+    <Compile Include="Model\Migrations\201512081254130_AddLeagueMessages.Designer.cs">
+      <DependentUpon>201512081254130_AddLeagueMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512081518550_AddAdditionalInformationsToLeague.cs" />
+    <Compile Include="Model\Migrations\201512081518550_AddAdditionalInformationsToLeague.Designer.cs">
+      <DependentUpon>201512081518550_AddAdditionalInformationsToLeague.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512112146359_AddTableOrderRules.cs" />
+    <Compile Include="Model\Migrations\201512112146359_AddTableOrderRules.Designer.cs">
+      <DependentUpon>201512112146359_AddTableOrderRules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512112148121_AddLeagueStatus.cs" />
+    <Compile Include="Model\Migrations\201512112148121_AddLeagueStatus.Designer.cs">
+      <DependentUpon>201512112148121_AddLeagueStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512112201552_AddTeamStatus.cs" />
+    <Compile Include="Model\Migrations\201512112201552_AddTeamStatus.Designer.cs">
+      <DependentUpon>201512112201552_AddTeamStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.cs" />
+    <Compile Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.Designer.cs">
+      <DependentUpon>201512112353350_AddEmailAndPhoneForCoach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\SportsHall.cs" />
+    <Compile Include="Model\BootstrapManagementContext.cs" />
+    <Compile Include="Model\Coach.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\League.cs" />
+    <Compile Include="Model\ManagementDataContext.cs" />
+    <Compile Include="Model\Migrations\Configuration.cs" />
+    <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Regulations.cs" />
+    <Compile Include="Model\TableOrderRules.cs" />
+    <Compile Include="Model\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryObjects\LeagueExtensions.cs" />
+    <Compile Include="QueryObjects\TeamExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Domain\Commands\" />
-    <Folder Include="Domain\Handlers\" />
     <Folder Include="Domain\Services\" />
-    <Folder Include="Model\Migrations\" />
-    <Folder Include="QueryObjects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
+      <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
+      <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Management.Contracts\VolleyballLeagueManagement.Management.Contracts.csproj">
+      <Project>{912E064F-79FE-4B44-997E-4F28D73C6566}</Project>
+      <Name>VolleyballLeagueManagement.Management.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model\Migrations\201512081249078_InitialMigration.resx">
+      <DependentUpon>201512081249078_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512081254130_AddLeagueMessages.resx">
+      <DependentUpon>201512081254130_AddLeagueMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512081518550_AddAdditionalInformationsToLeague.resx">
+      <DependentUpon>201512081518550_AddAdditionalInformationsToLeague.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512112146359_AddTableOrderRules.resx">
+      <DependentUpon>201512112146359_AddTableOrderRules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512112148121_AddLeagueStatus.resx">
+      <DependentUpon>201512112148121_AddLeagueStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512112201552_AddTeamStatus.resx">
+      <DependentUpon>201512112201552_AddTeamStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.resx">
+      <DependentUpon>201512112353350_AddEmailAndPhoneForCoach.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
