@@ -4,9 +4,9 @@ namespace VolleyballLeagueManagement.Management.Domain.Commands
 {
     public class SendMessageCommand : ICommand
     {
-        public int From { get; set; }
+        public int From { get; set; } // TeamId
 
-        public int To { get; set; }
+        public int To { get; set; } // LeagueId
 
         public string Subject { get; set; }
 

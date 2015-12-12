@@ -2,7 +2,7 @@
 
 namespace VolleyballLeagueManagement.Management.Domain.Commands
 {
-    public class AddNoteLeagueCommand : ICommand
+    public class AddLeagueNoteCommand : ICommand
     {
         public int LeagueId { get; set; }
 
