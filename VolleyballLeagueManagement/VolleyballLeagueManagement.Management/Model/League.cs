@@ -28,6 +28,8 @@ namespace VolleyballLeagueManagement.Management.Model
 
         public virtual ICollection<Team> Teams { get; set; }
 
+        public virtual ICollection<Team> TeamsWaitingForApprove { get; set; }
+
         public virtual ICollection<LeagueNote> Messages { get; set; }
 
 
