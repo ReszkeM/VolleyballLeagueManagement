@@ -22,6 +22,10 @@ namespace VolleyballLeagueManagement.League.Model
         public DbSet<TableOrderRules> TableOrderRegulationses { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Calendar> Calendars { get; set; }
+        public DbSet<Round> Rounds { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Set> Sets { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -37,6 +41,12 @@ namespace VolleyballLeagueManagement.League.Model
                 .Entity<League>()
                 .HasMany(l => l.Teams)
                 .WithOptional(r => r.League);
+
+            modelBuilder
+                .Entity<League>()
+                .HasOptional(l => l.Calendar)
+                .WithOptionalPrincipal(c => c.League)
+                .WillCascadeOnDelete();
 
             modelBuilder
                 .Entity<Regulations>()

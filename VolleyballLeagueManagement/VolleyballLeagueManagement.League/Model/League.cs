@@ -11,12 +11,16 @@ namespace VolleyballLeagueManagement.League.Model
 
         public int OrganizerId { get; set; }
 
+        public int CalendarId { get; set; }
+
         public string Name { get; set; }
 
         public LeagueStatus Status { get; set; }
 
 
         public virtual Regulations Regulations { get; set; }
+
+        public virtual Calendar Calendar { get; set; }
 
         public virtual ICollection<Team> Teams { get; set; } 
     }

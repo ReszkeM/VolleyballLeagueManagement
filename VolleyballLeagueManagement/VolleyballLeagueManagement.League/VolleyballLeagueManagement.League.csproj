@@ -50,15 +50,22 @@
   <ItemGroup>
     <Compile Include="Model\BootstrapLeagueContext.cs" />
     <Compile Include="Model\Calendar.cs" />
+    <Compile Include="Model\Game.cs" />
     <Compile Include="Model\League.cs" />
     <Compile Include="Model\LeagueDataContext.cs" />
     <Compile Include="Model\Migrations\201512122150419_InitialMigration.cs" />
     <Compile Include="Model\Migrations\201512122150419_InitialMigration.Designer.cs">
       <DependentUpon>201512122150419_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Migrations\201512122225413_AddCalendar.cs" />
+    <Compile Include="Model\Migrations\201512122225413_AddCalendar.Designer.cs">
+      <DependentUpon>201512122225413_AddCalendar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Regulations.cs" />
+    <Compile Include="Model\Round.cs" />
+    <Compile Include="Model\Set.cs" />
     <Compile Include="Model\TableOrderRules.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +94,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Model\Migrations\201512122150419_InitialMigration.resx">
       <DependentUpon>201512122150419_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512122225413_AddCalendar.resx">
+      <DependentUpon>201512122225413_AddCalendar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
