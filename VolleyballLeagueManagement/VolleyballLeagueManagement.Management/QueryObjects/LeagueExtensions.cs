@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VolleyballLeagueManagement.Management.Contracts.ViewModels;
 using VolleyballLeagueManagement.Management.Model;
@@ -7,6 +8,16 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
 {
     public static class LeagueExtensions
     {
+        public static ICollection<LeaguePreviewViewModel> FindAllLeagues(this IQueryable<League> leagues)
+        {
+            var league = leagues.ToViewModel();
+
+            if (league.Count == 0)
+                return new List<LeaguePreviewViewModel>();
+
+            return league;
+        }
+
         public static LeaguePreviewViewModel FindLeagueByUserId(this IQueryable<League> leagues, int userId)
         {
             var league = leagues.FirstOrDefault(u => u.OrganizerId == userId);
@@ -145,6 +156,21 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 ApprovedTeams = league.Teams.Count,
                 TeamsLimit = league.Regulations.TeamsLimit
             };
+        }
+
+        private static ICollection<LeaguePreviewViewModel> ToViewModel(this IQueryable<League> leagues)
+        {
+            return leagues.Select(league => new LeaguePreviewViewModel
+            {
+                LeagueId = league.Id,
+                Name = league.Name,
+                City = league.SportsHall.City,
+                Status = league.Status,
+                ApplicationDeadline = league.Regulations.ApplicationDeadline,
+                StartTime = league.Regulations.StartTime,
+                ApprovedTeams = league.Teams.Count,
+                TeamsLimit = league.Regulations.TeamsLimit
+            }).ToList();
         }
     }
 }

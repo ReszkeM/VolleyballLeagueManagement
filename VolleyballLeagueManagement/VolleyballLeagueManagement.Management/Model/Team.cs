@@ -23,5 +23,13 @@ namespace VolleyballLeagueManagement.Management.Model
         public virtual Coach Coach { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }
+
+
+        public void LeaveLeague(League league)
+        {
+            league.Teams.Remove(this);
+            this.League = null;
+            this.LeagueId = null;
+        }
     }
 }

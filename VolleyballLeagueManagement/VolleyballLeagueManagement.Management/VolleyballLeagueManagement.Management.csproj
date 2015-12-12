@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Domain\Commands\AddLeagueNoteCommand.cs" />
     <Compile Include="Domain\Commands\AddPlayerCommand.cs" />
+    <Compile Include="Domain\Commands\LeaveLeagueCommand.cs" />
     <Compile Include="Domain\Commands\SendMessageCommand.cs" />
     <Compile Include="Domain\Commands\UpdateCoachCommand.cs" />
     <Compile Include="Domain\Commands\UpdateDocumentCommand.cs" />

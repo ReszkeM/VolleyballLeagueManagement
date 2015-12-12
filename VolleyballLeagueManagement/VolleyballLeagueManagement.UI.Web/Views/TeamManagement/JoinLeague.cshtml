@@ -1,0 +1,95 @@
+﻿@using VolleyballLeagueManagement.Management.Contracts.ViewModels;
+@model JoinLeagueViewModel
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.TeamId)
+
+<table class="table">
+    <tr>
+        <th>
+            Nazwa
+        </th>
+        <th>
+            Miasto
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Termin aplikacji
+        </th>
+        <th>
+            Data startu
+        </th>
+        <th>
+            Limit drużyn
+        </th>
+        <th>
+            Ilośc zapisanych drużyn
+        </th>
+        <th>
+            Zapisz drużynę
+        </th>
+    </tr>
+
+    @foreach (var league in Model.Leagues)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => league.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => league.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => league.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => league.ApplicationDeadline)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => league.Status)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => league.TeamsLimit)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => league.ApprovedTeams)
+            </td>
+
+            <td>
+                <div class="col-md-2">
+                    <input type="submit" onclick="JoinToLeague(@Model.TeamId, @league.LeagueId)" value="Zapisz" class="btn btn-default"/>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    function JoinToLeague(teamId, leagueId) {
+        sendData(teamId, leagueId);
+    }
+
+    function sendData(teamId, leagueId) {
+        $.ajax({
+            url: "/TeamManagement/JoinLeague/",
+            type: "POST",
+            data: {
+                command:{
+                    TeamId: teamId,
+                    LeagueId: leagueId
+                }
+            },
+            success: function (data) {
+                console.log("udalo sie!");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>

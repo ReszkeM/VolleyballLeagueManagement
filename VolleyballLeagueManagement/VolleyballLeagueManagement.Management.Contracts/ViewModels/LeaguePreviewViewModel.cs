@@ -5,6 +5,8 @@ namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
 {
     public class LeaguePreviewViewModel
     {
+        public int LeagueId { get; set; }
+
         public string Name { get; set; }
 
         public string City { get; set; }

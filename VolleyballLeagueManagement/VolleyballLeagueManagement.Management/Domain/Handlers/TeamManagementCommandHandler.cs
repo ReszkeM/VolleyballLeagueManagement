@@ -13,7 +13,8 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
         IHandler<JoinLeagueCommand>,
         IHandler<RemovePlayerCommand>,
         IHandler<RemoveTeamCommand>,
-        IHandler<UpdateCoachCommand>
+        IHandler<UpdateCoachCommand>,
+        IHandler<LeaveLeagueCommand>
     {
         public void Handle(AddPlayerCommand command)
         {
@@ -95,6 +96,28 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 UpdateCoach(team.Coach, command);
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void Handle(LeaveLeagueCommand command)
+        {
+            // TODO validate
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                Team team = dbContext.Teams.SingleOrDefault(t => t.Id == command.TeamId);
+
+                if (team == null)
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
+
+                League league = dbContext.Leagues.SingleOrDefault(l => l.Teams.Contains(team));
+
+                if (league == null)
+                    throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
+
+                team.LeaveLeague(league);
+
                 dbContext.SaveChanges();
             }
         }

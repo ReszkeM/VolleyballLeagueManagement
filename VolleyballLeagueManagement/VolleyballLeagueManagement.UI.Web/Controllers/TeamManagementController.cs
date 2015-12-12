@@ -101,6 +101,39 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult JoinLeague()
+        {
+            JoinLeagueViewModel model;
+            ICollection<LeaguePreviewViewModel> leagues;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                leagues = dbContext.Leagues.FindAllLeagues();
+                model = dbContext.Teams.GetTeamByUserId(user.UserId);
+                model.Leagues = leagues;
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult JoinLeague(JoinLeagueCommand command)
+        {
+            HandleCommand(command, Json("Team joined to league"));
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult LeaveLeague(LeaveLeagueCommand command)
+        {
+            HandleCommand(command, Json("Team leaved league"));
+
+            return RedirectToAction("Index");
+        }
+
         [HttpPost]
         public ActionResult AddPlayer(AddPlayerCommand command)
         {
@@ -124,8 +157,5 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
 
             return RedirectToAction("PlayersManage");
         }
-
-        // TODO join league
-        // TODO leave league
     }
 }

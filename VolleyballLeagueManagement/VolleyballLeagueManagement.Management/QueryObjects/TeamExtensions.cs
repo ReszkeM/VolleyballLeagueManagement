@@ -18,6 +18,17 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return team.ToViewModel();
         }
 
+        public static JoinLeagueViewModel GetTeamByUserId(this IQueryable<Team> teams, int userId)
+        {
+            var team = teams.FirstOrDefault(u => u.ManagerId == userId);
+
+            if (team == null || team.Coach == null)
+                throw new ArgumentException(
+                    string.Format("Team with user id: {0} does not exist in the database.", userId));
+
+            return GetTeam(team);
+        }
+
         public static UpdateCoachViewModel GetCoachByUserId(this IQueryable<Team> teams, int userId)
         {
             var team = teams.FirstOrDefault(u => u.ManagerId == userId);
@@ -61,20 +72,14 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             };
         }
 
-        private static List<PlayerViewModel> ToViewModel(this ICollection<Player> players)
+        private static JoinLeagueViewModel GetTeam(Team team)
         {
-            return players.Select(p => new PlayerViewModel
+            return new JoinLeagueViewModel
             {
-                 Id = p.Id,
-                 FirstName = p.FirstName,
-                 LastName = p.LastName,
-                 Age = p.Age,
-                 Growth = p.Growth,
-                 Position = p.Position,
-                 IsCapitan = p.IsCapitan
-            }).ToList();
+                TeamId = team.Id,
+                Leagues = new List<LeaguePreviewViewModel>()
+            };
         }
-
 
         private static UpdateCoachViewModel GetCoach(Team team)
         {
@@ -87,6 +92,20 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 CoachEmail = team.Coach.Email,
                 CoachPhone = team.Coach.Phone,
             };
+        }
+
+        private static List<PlayerViewModel> ToViewModel(this ICollection<Player> players)
+        {
+            return players.Select(p => new PlayerViewModel
+            {
+                Id = p.Id,
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                Age = p.Age,
+                Growth = p.Growth,
+                Position = p.Position,
+                IsCapitan = p.IsCapitan
+            }).ToList();
         }
     }
 }
