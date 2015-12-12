@@ -32,9 +32,9 @@ namespace VolleyballLeagueManagement.Management.Model
             bus.RegisterHandler<RemovePlayerCommand>(teamManagement.Handle);
             bus.RegisterHandler<RemoveTeamCommand>(teamManagement.Handle);
 
-            var communication = new CommunicationCommandHandler();
-            bus.RegisterHandler<AddNoteLeagueCommand>(communication.Handle);
-            bus.RegisterHandler<SendMessageCommand>(communication.Handle);
+            var messaging = new MessagingCommandHandler();
+            bus.RegisterHandler<AddLeagueNoteCommand>(messaging.Handle);
+            bus.RegisterHandler<SendMessageCommand>(messaging.Handle);
         }
 
         public void RegisterEventHandlers()
