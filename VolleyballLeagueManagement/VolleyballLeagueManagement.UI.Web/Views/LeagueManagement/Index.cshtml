@@ -1,0 +1,68 @@
+﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.LeaguePreviewViewModel
+
+<div>
+    <h4>LeaguePreviewViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApprovedTeams)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApprovedTeams)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamsLimit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamsLimit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationDeadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationDeadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
