@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using VolleyballLeagueManagement.Common.CustomAttributes;
 using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Common.Extensions;
@@ -86,12 +87,34 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult PlayersManage()
+        {
+            ICollection<PlayerViewModel> model;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Teams.GetPlayersByUserId(user.UserId);
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult AddPlayer(AddPlayerCommand command)
         {
             HandleCommand(command, Json("Player added"));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("PlayersManage");
+        }
+
+        [HttpPost]
+        public ActionResult EditPlayer(UpdatePlayerCommand command)
+        {
+            HandleCommand(command, Json("Player added"));
+
+            return RedirectToAction("PlayersManage");
         }
 
         [HttpPost]
@@ -99,7 +122,7 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         {
             HandleCommand(command, Json("Player removed"));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("PlayersManage");
         }
     }
 }
