@@ -46,6 +46,12 @@
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
+      <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
+      <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

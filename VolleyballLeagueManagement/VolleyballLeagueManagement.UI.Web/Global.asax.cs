@@ -8,6 +8,7 @@ using System.Web.Security;
 using VolleyballLeagueManagement.Common.Authentication;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
+using VolleyballLeagueManagement.League.Model;
 using VolleyballLeagueManagement.Management.Model;
 using VolleyballLeagueManagement.UsersAccounts.Model;
 
@@ -26,12 +27,16 @@ namespace VolleyballLeagueManagement.UI.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var userAccountDataContext = new UserAccountDataContext();
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserAccountDataContext, VolleyballLeagueManagement.UsersAccounts.Model.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserAccountDataContext, UsersAccounts.Model.Migrations.Configuration>());
             userAccountDataContext.Database.Initialize(false);
 
             var managementDataContext = new ManagementDataContext();
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ManagementDataContext, VolleyballLeagueManagement.Management.Model.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ManagementDataContext, Management.Model.Migrations.Configuration>());
             managementDataContext.Database.Initialize(false);
+
+            var leagueDataContext = new LeagueDataContext();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<LeagueDataContext, League.Model.Migrations.Configuration>());
+            leagueDataContext.Database.Initialize(false);
 
             BootstrapContexts();
         }
@@ -51,6 +56,10 @@ namespace VolleyballLeagueManagement.UI.Web
             var managementBootstrap = new BootstrapManagementContext(MvcApplication.MessageBus);
             managementBootstrap.RegisterCommandHandlers();
             managementBootstrap.RegisterEventHandlers();
+
+            var leagueBootstrap = new BootstrapLeagueContext(MvcApplication.MessageBus);
+            leagueBootstrap.RegisterCommandHandlers();
+            leagueBootstrap.RegisterEventHandlers();
         }
     }
 }
