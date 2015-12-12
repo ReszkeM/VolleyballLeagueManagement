@@ -159,8 +159,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\MessagingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountManagementController.cs" />
+    <Compile Include="Controllers\LeagueManagementController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
+    <Compile Include="Controllers\TeamManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,7 +204,9 @@
     <Content Include="Scripts\libraries\respond.js" />
     <Content Include="Scripts\libraries\respond.min.js" />
     <Content Include="Scripts\libraries\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -227,11 +233,33 @@
     <Content Include="Views\AccountManagement\ChangePassword.cshtml" />
     <Content Include="Views\Account\ConfirmAccount.cshtml" />
     <Content Include="Views\AccountManagement\RemoveAccount.cshtml" />
+    <Content Include="Views\LeagueManagement\Remove.cshtml" />
+    <Content Include="Views\LeagueManagement\UpdateSportsHall.cshtml" />
+    <Content Include="Views\LeagueManagement\UpdateInformations.cshtml" />
+    <Content Include="Views\LeagueManagement\UpdateRegulations.cshtml" />
+    <Content Include="Views\TeamManagement\Create.cshtml" />
+    <Content Include="Views\TeamManagement\Remove.cshtml" />
+    <Content Include="Views\TeamManagement\UpdateCoach.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
+    <Content Include="Views\LeagueManagement\Create.cshtml" />
+    <Content Include="Views\Review\FindTeam.cshtml" />
+    <Content Include="Views\Review\FindLeague.cshtml" />
+    <Content Include="Views\LeagueManagement\UpdateTableOrderRules.cshtml" />
+    <Content Include="Views\LeagueManagement\Index.cshtml" />
+    <Content Include="Views\TeamManagement\Index.cshtml" />
+    <Content Include="Views\TeamManagement\PlayersManage.cshtml" />
+    <Content Include="Views\TeamManagement\JoinLeague.cshtml" />
+    <Content Include="Views\TeamManagement\MyLeague.cshtml" />
+    <Content Include="Views\LeagueManagement\Teams.cshtml" />
+    <Content Include="Views\Review\Leagues.cshtml" />
+    <Content Include="Views\Review\Teams.cshtml" />
+    <Content Include="Views\Review\League.cshtml" />
+    <Content Include="Views\Review\Team.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\viewModels\" />
-    <Folder Include="Views\Base\" />
+    <Folder Include="Views\Messaging\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -241,6 +269,22 @@
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
       <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
       <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.League.Contracts\VolleyballLeagueManagement.League.Contracts.csproj">
+      <Project>{6426AF53-0205-43CD-B9DD-AD291D422916}</Project>
+      <Name>VolleyballLeagueManagement.League.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.League\VolleyballLeagueManagement.League.csproj">
+      <Project>{31D490AE-157B-4C4F-AEEF-550698FC7383}</Project>
+      <Name>VolleyballLeagueManagement.League</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Management.Contracts\VolleyballLeagueManagement.Management.Contracts.csproj">
+      <Project>{912E064F-79FE-4B44-997E-4F28D73C6566}</Project>
+      <Name>VolleyballLeagueManagement.Management.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.Management\VolleyballLeagueManagement.Management.csproj">
+      <Project>{C179E0E1-72BD-443A-AA77-EEA8ACD22648}</Project>
+      <Name>VolleyballLeagueManagement.Management</Name>
     </ProjectReference>
     <ProjectReference Include="..\VolleyballLeagueManagement.UsersAccounts.Contracts\VolleyballLeagueManagement.UsersAccounts.Contracts.csproj">
       <Project>{c69b2ada-bdac-4b62-a1de-7bb42c3f7147}</Project>
