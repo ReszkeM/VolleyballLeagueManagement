@@ -28,7 +28,7 @@ namespace VolleyballLeagueManagement.Management.Model
 
         public virtual ICollection<Team> Teams { get; set; }
 
-        public virtual ICollection<LeagueMessage> Messages { get; set; }
+        public virtual ICollection<LeagueNote> Messages { get; set; }
 
 
         public void UpdateStatus(int status)

@@ -1,6 +1,6 @@
 ﻿namespace VolleyballLeagueManagement.Management.Model
 {
-    public class LeagueMessage
+    public class LeagueNote
     {
         public int Id { get; set; }
 

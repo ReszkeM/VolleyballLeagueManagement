@@ -18,7 +18,7 @@ namespace VolleyballLeagueManagement.Management.Model
         public ManagementDataContext() : base("VolleyballLeagueManagement.Management") { }
 
         public DbSet<League> Leagues { get; set; }
-        public DbSet<LeagueMessage> LeagueMessages { get; set; }
+        public DbSet<LeagueNote> LeagueNotes { get; set; }
         public DbSet<Regulations> Regulationses { get; set; }
         public DbSet<TableOrderRules> TableOrderRegulationses { get; set; }
         public DbSet<Document> Documents { get; set; }

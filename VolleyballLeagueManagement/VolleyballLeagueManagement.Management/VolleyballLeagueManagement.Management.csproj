@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Commands\AddNoteLeagueCommand.cs" />
+    <Compile Include="Domain\Commands\AddLeagueNoteCommand.cs" />
     <Compile Include="Domain\Commands\AddPlayerCommand.cs" />
     <Compile Include="Domain\Commands\SendMessageCommand.cs" />
     <Compile Include="Domain\Commands\UpdateCoachCommand.cs" />
@@ -65,10 +65,10 @@
     <Compile Include="Domain\Commands\RemovePlayerCommand.cs" />
     <Compile Include="Domain\Commands\RemoveTeamCommand.cs" />
     <Compile Include="Domain\Commands\UpdateTableOrderRulesCommand.cs" />
-    <Compile Include="Domain\Handlers\CommunicationCommandHandler.cs" />
+    <Compile Include="Domain\Handlers\MessagingCommandHandler.cs" />
     <Compile Include="Domain\Handlers\LeagueManagementCommandHandler.cs" />
     <Compile Include="Domain\Handlers\TeamManagementCommandHandler.cs" />
-    <Compile Include="Model\LeagueMessage.cs" />
+    <Compile Include="Model\LeagueNote.cs" />
     <Compile Include="Model\Migrations\201512081249078_InitialMigration.cs" />
     <Compile Include="Model\Migrations\201512081249078_InitialMigration.Designer.cs">
       <DependentUpon>201512081249078_InitialMigration.cs</DependentUpon>
@@ -96,6 +96,10 @@
     <Compile Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.cs" />
     <Compile Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.Designer.cs">
       <DependentUpon>201512112353350_AddEmailAndPhoneForCoach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512120820553_ChangeLeagueNoteName.cs" />
+    <Compile Include="Model\Migrations\201512120820553_ChangeLeagueNoteName.Designer.cs">
+      <DependentUpon>201512120820553_ChangeLeagueNoteName.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\SportsHall.cs" />
     <Compile Include="Model\BootstrapManagementContext.cs" />
@@ -150,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512112353350_AddEmailAndPhoneForCoach.resx">
       <DependentUpon>201512112353350_AddEmailAndPhoneForCoach.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512120820553_ChangeLeagueNoteName.resx">
+      <DependentUpon>201512120820553_ChangeLeagueNoteName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
