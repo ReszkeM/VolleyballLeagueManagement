@@ -4,13 +4,12 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Script.Serialization;
 using System.Web.Security;
 using VolleyballLeagueManagement.Common.Authentication;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
+using VolleyballLeagueManagement.Management.Model;
 using VolleyballLeagueManagement.UsersAccounts.Model;
-using VolleyballLeagueManagement.UsersAccounts.Model.Migrations;
 
 namespace VolleyballLeagueManagement.UI.Web
 {
@@ -27,8 +26,12 @@ namespace VolleyballLeagueManagement.UI.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             var userAccountDataContext = new UserAccountDataContext();
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserAccountDataContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<UserAccountDataContext, VolleyballLeagueManagement.UsersAccounts.Model.Migrations.Configuration>());
             userAccountDataContext.Database.Initialize(false);
+
+            var managementDataContext = new ManagementDataContext();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ManagementDataContext, VolleyballLeagueManagement.Management.Model.Migrations.Configuration>());
+            managementDataContext.Database.Initialize(false);
 
             BootstrapContexts();
         }
@@ -44,6 +47,10 @@ namespace VolleyballLeagueManagement.UI.Web
             var userAccountBootstrap = new BootstrapUserAccountContext(MvcApplication.MessageBus);
             userAccountBootstrap.RegisterCommandHandlers();
             userAccountBootstrap.RegisterEventHandlers();
+
+            var managementBootstrap = new BootstrapManagementContext(MvcApplication.MessageBus);
+            managementBootstrap.RegisterCommandHandlers();
+            managementBootstrap.RegisterEventHandlers();
         }
     }
 }
