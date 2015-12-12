@@ -12,6 +12,8 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            // TODO account informations
+
             return View();
         }
 
