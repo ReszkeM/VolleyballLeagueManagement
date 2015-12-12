@@ -18,7 +18,7 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
                 League league = dbContext.Leagues.SingleOrDefault(l => l.Id == command.LeagueId);
                 LeagueNote note = CreateNoteEntity(command, league);
 
-                dbContext.LeagueMessages.Add(note);
+                dbContext.LeagueNotes.Add(note);
                 dbContext.SaveChanges();
             }
         }

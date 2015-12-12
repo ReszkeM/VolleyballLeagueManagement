@@ -32,7 +32,7 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendMessage(AddLeagueNoteCommand command)
+        public ActionResult SendMessage(SendMessageCommand command)
         {
             HandleCommand(command, Json("Message added"));
 
