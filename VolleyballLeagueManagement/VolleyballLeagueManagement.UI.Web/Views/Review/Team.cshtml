@@ -1,0 +1,37 @@
+﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.TeamPreviewViewModel
+
+<div>
+    <h4>TeamPreviewViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoachFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CoachLastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Zobacz graczy", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Zobacz ligę", "Index")
+    @Html.ActionLink("Zobacz terminarz", "Index")
+</p>

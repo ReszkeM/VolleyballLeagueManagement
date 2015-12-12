@@ -1,0 +1,61 @@
+﻿@model IEnumerable<VolleyballLeagueManagement.Management.Contracts.ViewModels.LeaguePreviewViewModel>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LeagueId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovedTeams)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeamsLimit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationDeadline)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LeagueId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApprovedTeams)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamsLimit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationDeadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.ActionLink("Zobacz drużyny", "Teams", new { leagueId = item.LeagueId }) |
+            @Html.ActionLink("Zobacz tabele", "Edit", new {/* id=item.PrimaryKey */}) |
+            @Html.ActionLink("Zobacz terminarz", "Delete", new {/* id=item.PrimaryKey */})
+        </td>
+    </tr>
+}
+
+</table>
