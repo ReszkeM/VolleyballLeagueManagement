@@ -45,6 +45,7 @@
     <Compile Include="ViewModels\FindViewModel.cs" />
     <Compile Include="ViewModels\JoinLeagueViewModel.cs" />
     <Compile Include="ViewModels\LeaguePreviewViewModel.cs" />
+    <Compile Include="ViewModels\LeagueTeamsViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
     <Compile Include="ViewModels\RemoveViewModel.cs" />
     <Compile Include="ViewModels\TeamPreviewViewModel.cs" />

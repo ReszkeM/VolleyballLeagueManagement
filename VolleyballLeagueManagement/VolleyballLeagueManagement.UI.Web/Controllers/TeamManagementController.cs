@@ -102,6 +102,20 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult MyLeague()
+        {
+            LeaguePreviewViewModel model;
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Teams.FindTeamLeague(user.UserId);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
         public ActionResult JoinLeague()
         {
             JoinLeagueViewModel model;

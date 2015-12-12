@@ -1,0 +1,70 @@
+﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.LeaguePreviewViewModel
+@if (Model == null)
+{
+    <h4>Twoja drużyna jeszcze nie jest zapisana do żadnej ligi</h4>
+}
+else
+{
+    <div>
+        <h4>LeaguePreviewViewModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @Html.HiddenFor(model => model.LeagueId)
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ApprovedTeams)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ApprovedTeams)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TeamsLimit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TeamsLimit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ApplicationDeadline)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ApplicationDeadline)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Zobacz tabelę", "Index") |
+        @Html.ActionLink("Najlepsi zawodnicy", "Index") |
+        @Html.ActionLink("Terminarz", "Index")
+        @Html.ActionLink("Opuść ligę", "LeaveLeague", "TeamManagement")
+    </p>
+}

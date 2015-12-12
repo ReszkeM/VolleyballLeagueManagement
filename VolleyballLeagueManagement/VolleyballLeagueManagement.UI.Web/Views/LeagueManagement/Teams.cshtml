@@ -1,0 +1,106 @@
+﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.LeagueTeamsViewModel
+@Html.HiddenFor(model => model.LeagueId)
+
+<h4>Drużyny zaakceptowane</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Nazwa
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Trener
+        </th>
+    </tr>
+
+    @foreach (var team in Model.Teams)
+    {
+        <tr>
+            <td>
+                @team.Name
+            </td>
+            <td>
+                @team.Status.ToString()
+            </td>
+            <td>
+                @String.Format("{0} {1}", @team.CoachFirstName, @team.CoachLastName)
+            </td>
+        </tr>
+    }
+</table>
+
+<h4>Drużyny do zaakceptowania</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Nazwa
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Trener
+        </th>
+        <th>
+            Zakceptuj
+        </th>
+        <th>
+            Odrzuć
+        </th>
+    </tr>
+
+    @foreach (var team in Model.Teams)
+    {
+        <tr>
+            <td>
+                @team.Name
+            </td>
+            <td>
+                @team.Status.ToString()
+            </td>
+            <td>
+                @String.Format("{0} {1}", @team.CoachFirstName, @team.CoachLastName)
+            </td>
+            <td>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="UpdateStatus(@Model.LeagueId, @team.Id, true)" value="Zaakceptuj" class="btn btn-default" />
+                </div>
+            </td>
+            <td>
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" onclick="UpdateStatus(@Model.LeagueId, @team.Id, false)" value="Odrzuć" class="btn btn-default" />
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<script>
+    function UpdateStatus(leagueId, teamId, accept) {
+        sendData(leagueId, teamId, accept);
+    }
+
+    function sendData(leagueId, teamId, accept) {
+        $.ajax({
+            url: "/LeagueManagement/UpdateStatus/",
+            type: "POST",
+            data: {
+                command:{
+                    LeagueId: leagueId,
+                    TeamId: teamId,
+                    Accept: accept
+                }
+            },
+            success: function (data) {
+                console.log("udalo sie!");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>

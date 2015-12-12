@@ -23,9 +23,19 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             var league = leagues.FirstOrDefault(u => u.OrganizerId == userId);
 
             if (league == null)
-                return new LeaguePreviewViewModel();
+                return null;
 
             return league.ToViewModel();
+        }
+
+        public static LeaguePreviewViewModel FindTeamLeague(this IQueryable<Team> teams, int userId)
+        {
+            var team = teams.FirstOrDefault(u => u.ManagerId == userId);
+
+            if (team == null || team.League == null)
+                return null;
+
+            return team.League.ToViewModel();
         }
 
         public static UpdateSportsHallViewModel GetSportsHallByUserId(this IQueryable<League> leagues, int userId)
@@ -56,6 +66,12 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
         {
             League league = FindLeague(leagues, userId);
             return GetLeagueStatus(league);
+        }
+
+        public static LeagueTeamsViewModel GetLeagueTeams(this IQueryable<League> leagues, int userId)
+        {
+            League league = FindLeague(leagues, userId);
+            return GetLeagueTeams(league);
         }
 
 
@@ -155,6 +171,16 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 StartTime = league.Regulations.StartTime,
                 ApprovedTeams = league.Teams.Count,
                 TeamsLimit = league.Regulations.TeamsLimit
+            };
+        }
+
+        private static LeagueTeamsViewModel GetLeagueTeams(League league)
+        {
+            return new LeagueTeamsViewModel
+            {
+                LeagueId = league.Id,
+                Teams = league.Teams.ToViewModel(),
+                TeamsToApprove = league.TeamsWaitingForApprove.ToViewModel()
             };
         }
 

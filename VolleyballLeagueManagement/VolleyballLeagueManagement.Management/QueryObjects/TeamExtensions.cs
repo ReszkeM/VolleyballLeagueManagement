@@ -51,6 +51,18 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return team.Players.ToViewModel();
         }
 
+        public static ICollection<TeamPreviewViewModel> ToViewModel(this ICollection<Team> teams)
+        {
+            return teams.Select(t => new TeamPreviewViewModel
+            {
+                Id = t.Id,
+                Name = t.Name,
+                Status = t.Status,
+                CoachFirstName = t.Coach.FirstName,
+                CoachLastName = t.Coach.LastName
+            }).ToList();
+        }
+
        
         public static TeamViewModel CreateNewTeam(int userId)
         {
@@ -61,7 +73,7 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
         }
 
 
-        private static TeamPreviewViewModel ToViewModel(this Team team)
+        public static TeamPreviewViewModel ToViewModel(this Team team)
         {
             return new TeamPreviewViewModel
             {

@@ -153,21 +153,21 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult UpdateStatus()
+        public ActionResult Teams()
         {
-            UpdateLeagueStatusViewModel model;
+            LeagueTeamsViewModel model;
             var user = System.Web.HttpContext.Current.GetCurrentUser();
 
             using (var dbContext = new ManagementDataContext())
             {
-                model = dbContext.Leagues.GetLeagueStatusByUserId(user.UserId);
+                model = dbContext.Leagues.GetLeagueTeams(user.UserId);
             }
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult UpdateStatus(UpdateLeagueStatusCommand command)
+        public ActionResult UpdateStatus(UpdateTeamStatusCommand command)
         {
             HandleCommand(command, Json("League status changed"));
 
@@ -177,6 +177,5 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         // TODO Generate calendar
         // TODO Change match date
         // TODO Upload document
-        // TODO accept/reject team
     }
 }
