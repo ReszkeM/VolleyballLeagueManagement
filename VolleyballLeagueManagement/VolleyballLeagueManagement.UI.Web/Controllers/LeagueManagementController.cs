@@ -174,7 +174,9 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        // TODO Generate calendar
         // TODO Change match date
         // TODO Upload document
+        // TODO accept/reject team
     }
 }

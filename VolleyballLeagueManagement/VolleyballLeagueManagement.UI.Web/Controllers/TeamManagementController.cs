@@ -124,5 +124,8 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
 
             return RedirectToAction("PlayersManage");
         }
+
+        // TODO join league
+        // TODO leave league
     }
 }
