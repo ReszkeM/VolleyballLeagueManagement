@@ -57,6 +57,9 @@
     <Compile Include="Authentication\ApplicationUser.cs" />
     <Compile Include="Authentication\CookieHandler.cs" />
     <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="Enums\LeagueStatus.cs" />
+    <Compile Include="Enums\OrderRules.cs" />
+    <Compile Include="Enums\TeamStatus.cs" />
     <Compile Include="Extensions\HttpContextExtensions.cs" />
     <Compile Include="Authentication\LeaguePrincipal.cs" />
     <Compile Include="Authentication\LeaguePrincipalSerializeModel.cs" />
