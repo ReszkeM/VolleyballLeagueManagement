@@ -22,6 +22,9 @@
             Data startu
         </th>
         <th>
+            Dzień rozgrywek
+        </th>
+        <th>
             Limit drużyn
         </th>
         <th>
@@ -49,7 +52,11 @@
             </td>
 
             <td>
-                @Html.DisplayFor(modelItem => league.Status)
+                @Html.DisplayFor(modelItem => league.StartTime)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => league.Day)
             </td>
 
             <td>
@@ -62,7 +69,7 @@
 
             <td>
                 <div class="col-md-2">
-                    <input type="submit" onclick="JoinToLeague(@Model.TeamId, @league.LeagueId)" value="Zapisz" class="btn btn-default"/>
+                    <input type="submit" onclick="JoinToLeague(@Model.TeamId, @league.LeagueId)" value="Zapisz" class="btn btn-default" />
                 </div>
             </td>
         </tr>

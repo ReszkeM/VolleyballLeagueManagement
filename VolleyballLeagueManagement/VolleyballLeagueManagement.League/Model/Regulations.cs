@@ -1,4 +1,5 @@
 ﻿using System;
+using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.League.Model
 {
@@ -11,6 +12,8 @@ namespace VolleyballLeagueManagement.League.Model
         public int TableOrderRulesId { get; set; }
 
         public bool Playoffs { get; set; }
+
+        public Days Days { get; set; }
 
         public DateTime StartTime { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Common.Interfaces.Messaging;
 
 namespace VolleyballLeagueManagement.Management.Domain.Commands
@@ -14,6 +15,8 @@ namespace VolleyballLeagueManagement.Management.Domain.Commands
         public int EntryFee { get; set; }
 
         public bool Playoffs { get; set; }
+
+        public Days Days { get; set; }
 
         public DateTime StartTime { get; set; }
 

@@ -17,6 +17,8 @@ namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
 
         public int TeamsLimit { get; set; }
 
+        public Days Day { get; set; }
+
         public DateTime ApplicationDeadline { get; set; }
 
         public DateTime StartTime { get; set; }

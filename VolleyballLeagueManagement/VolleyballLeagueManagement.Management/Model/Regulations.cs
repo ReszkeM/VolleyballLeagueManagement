@@ -1,4 +1,6 @@
 ﻿using System;
+using VolleyballLeagueManagement.Common.Enums;
+
 namespace VolleyballLeagueManagement.Management.Model
 {
     public class Regulations
@@ -18,6 +20,8 @@ namespace VolleyballLeagueManagement.Management.Model
         public int EntryFee { get; set; }
 
         public bool Playoffs { get; set; }
+
+        public Days Day { get; set; }
 
         public DateTime StartTime { get; set; }
 

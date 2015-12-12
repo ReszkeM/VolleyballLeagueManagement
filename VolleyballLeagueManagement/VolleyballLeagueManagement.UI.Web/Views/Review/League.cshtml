@@ -4,13 +4,7 @@
     <h4>LeaguePreviewViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LeagueId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LeagueId)
-        </dd>
+        @Html.HiddenFor(model => model.LeagueId)
 
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -60,6 +54,9 @@
             @Html.DisplayFor(model => model.StartTime)
         </dd>
 
+        <dd>
+            @Html.DisplayFor(model => model.Day)
+        </dd>
     </dl>
 </div>
 <p>

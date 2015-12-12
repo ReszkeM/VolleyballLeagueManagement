@@ -1,4 +1,5 @@
 ﻿using System;
+using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
 {
@@ -13,6 +14,8 @@ namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
         public int EntryFee { get; set; }
 
         public bool Playoffs { get; set; }
+
+        public Days Day { get; set; }
 
         public DateTime StartTime { get; set; }
 

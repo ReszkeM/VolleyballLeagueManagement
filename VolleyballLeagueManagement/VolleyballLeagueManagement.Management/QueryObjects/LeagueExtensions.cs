@@ -84,7 +84,6 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return GetLeagueTeams(league);
         }
 
-
         public static LeagueViewModel CreateNewLeague(int userId)
         {
             return new LeagueViewModel
@@ -95,6 +94,22 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 EndTime = DateTime.Now
             };
         }
+
+        public static LeaguePreviewViewModel ToViewModel(this League league)
+        {
+            return new LeaguePreviewViewModel
+            {
+                Name = league.Name,
+                City = league.SportsHall.City,
+                Status = league.Status,
+                ApplicationDeadline = league.Regulations.ApplicationDeadline,
+                StartTime = league.Regulations.StartTime,
+                ApprovedTeams = league.Teams.Count,
+                TeamsLimit = league.Regulations.TeamsLimit,
+                Day = league.Regulations.Day
+            };
+        }
+
 
 
         private static League FindLeague(IQueryable<League> leagues, int userId)
@@ -144,7 +159,8 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 StartTime = league.Regulations.StartTime,
                 EndTime = league.Regulations.EndTime,
                 EntryFee = league.Regulations.EntryFee,
-                Playoffs = league.Regulations.Playoffs
+                Playoffs = league.Regulations.Playoffs,
+                Day = league.Regulations.Day
             };
         }
 
@@ -170,20 +186,6 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             };
         }
 
-        public static LeaguePreviewViewModel ToViewModel(this League league)
-        {
-            return new LeaguePreviewViewModel
-            {
-                Name = league.Name,
-                City = league.SportsHall.City,
-                Status = league.Status,
-                ApplicationDeadline = league.Regulations.ApplicationDeadline,
-                StartTime = league.Regulations.StartTime,
-                ApprovedTeams = league.Teams.Count,
-                TeamsLimit = league.Regulations.TeamsLimit
-            };
-        }
-
         private static LeagueTeamsViewModel GetLeagueTeams(League league)
         {
             return new LeagueTeamsViewModel
@@ -205,7 +207,8 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 ApplicationDeadline = league.Regulations.ApplicationDeadline,
                 StartTime = league.Regulations.StartTime,
                 ApprovedTeams = league.Teams.Count,
-                TeamsLimit = league.Regulations.TeamsLimit
+                TeamsLimit = league.Regulations.TeamsLimit,
+                Day = league.Regulations.Day
             }).ToList();
         }
     }

@@ -61,6 +61,10 @@
     <Compile Include="Model\Migrations\201512122225413_AddCalendar.Designer.cs">
       <DependentUpon>201512122225413_AddCalendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Migrations\201512122253466_AddGamesDay.cs" />
+    <Compile Include="Model\Migrations\201512122253466_AddGamesDay.Designer.cs">
+      <DependentUpon>201512122253466_AddGamesDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Regulations.cs" />
@@ -97,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512122225413_AddCalendar.resx">
       <DependentUpon>201512122225413_AddCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512122253466_AddGamesDay.resx">
+      <DependentUpon>201512122253466_AddGamesDay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

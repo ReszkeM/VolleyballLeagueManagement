@@ -35,6 +35,8 @@ namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
 
         public bool Playoffs { get; set; }
 
+        public Days Day { get; set; }
+
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }

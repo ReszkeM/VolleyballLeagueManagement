@@ -36,6 +36,8 @@ namespace VolleyballLeagueManagement.Management.Domain.Commands
 
         public bool Playoffs { get; set; }
 
+        public Days Days { get; set; }
+
         public DateTime StartTime { get; set; }
 
         public DateTime EndTime { get; set; }
