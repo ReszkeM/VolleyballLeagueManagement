@@ -48,7 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Handlers\DirectMatchRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\OrderRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\PointsRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\SetsRatioRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\SmallPointsRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\WinGamesRuleHandler.cs" />
     <Compile Include="Domain\Services\CalendarService.cs" />
+    <Compile Include="Domain\Services\LeagueTableService.cs" />
+    <Compile Include="Domain\Services\TeamInTableService.cs" />
     <Compile Include="Model\BootstrapLeagueContext.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Game.cs" />
@@ -66,6 +74,18 @@
     <Compile Include="Model\Migrations\201512122253466_AddGamesDay.Designer.cs">
       <DependentUpon>201512122253466_AddGamesDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Migrations\201512131417448_AddGameForeginKeysToTeams.cs" />
+    <Compile Include="Model\Migrations\201512131417448_AddGameForeginKeysToTeams.Designer.cs">
+      <DependentUpon>201512131417448_AddGameForeginKeysToTeams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512131718099_RenameDayColumnInRegulationsEntity.cs" />
+    <Compile Include="Model\Migrations\201512131718099_RenameDayColumnInRegulationsEntity.Designer.cs">
+      <DependentUpon>201512131718099_RenameDayColumnInRegulationsEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.cs" />
+    <Compile Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.Designer.cs">
+      <DependentUpon>201512131722193_AddLeagueIdToTeamEntity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Regulations.cs" />
@@ -79,7 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain\Commands\" />
-    <Folder Include="Domain\Handlers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
@@ -104,6 +123,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512122253466_AddGamesDay.resx">
       <DependentUpon>201512122253466_AddGamesDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512131417448_AddGameForeginKeysToTeams.resx">
+      <DependentUpon>201512131417448_AddGameForeginKeysToTeams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512131718099_RenameDayColumnInRegulationsEntity.resx">
+      <DependentUpon>201512131718099_RenameDayColumnInRegulationsEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.resx">
+      <DependentUpon>201512131722193_AddLeagueIdToTeamEntity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
