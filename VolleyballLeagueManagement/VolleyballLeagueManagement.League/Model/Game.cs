@@ -9,6 +9,10 @@ namespace VolleyballLeagueManagement.League.Model
 
         public int RoundId { get; set; }
 
+        public int FirstTeamId { get; set; }
+
+        public int SecondTeamId { get; set; }
+
         public int MVPId { get; set; }
 
         public DateTime Date { get; set; }

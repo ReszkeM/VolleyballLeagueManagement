@@ -15,7 +15,7 @@ namespace VolleyballLeagueManagement.League.Model
             Database.SetInitializer(new DatabaseInitializer<LeagueDataContext, Configuration>());
         }
 
-        public LeagueDataContext() : base("VolleyballLeagueManagement.Management") { }
+        public LeagueDataContext() : base("VolleyballLeagueManagement.League") { }
 
         public DbSet<League> Leagues { get; set; }
         public DbSet<Regulations> Regulationses { get; set; }

@@ -13,7 +13,7 @@ namespace VolleyballLeagueManagement.League.Model
 
         public bool Playoffs { get; set; }
 
-        public Days Days { get; set; }
+        public Days Day { get; set; }
 
         public DateTime StartTime { get; set; }
 

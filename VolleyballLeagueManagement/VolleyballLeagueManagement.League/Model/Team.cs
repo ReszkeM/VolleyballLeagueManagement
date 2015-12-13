@@ -7,6 +7,8 @@ namespace VolleyballLeagueManagement.League.Model
     {
         public int Id { get; set; }
 
+        public int? LeagueId { get; set; }
+
         public int ManagerId { get; set; }
 
         public string Name { get; set; }
