@@ -66,6 +66,7 @@
     <Compile Include="Authentication\LeaguePrincipalSerializeModel.cs" />
     <Compile Include="Enums\Position.cs" />
     <Compile Include="Enums\Role.cs" />
+    <Compile Include="Extensions\IntExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Infrastructure\CommandHandler.cs" />
     <Compile Include="Infrastructure\DatabaseInitializer.cs" />

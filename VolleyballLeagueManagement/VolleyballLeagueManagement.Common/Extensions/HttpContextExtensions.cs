@@ -6,7 +6,7 @@ namespace VolleyballLeagueManagement.Common.Extensions
     public static class HttpContextExtensions
     {
         /// <summary>
-        /// Rozszerzenie HttpContext.Current zwracające instancję WebDokPrincipal
+        /// HttpContext.Current extension returns LeaguePrincipal instance
         /// </summary>
         public static LeaguePrincipal GetCurrentUser(this HttpContext context)
         {

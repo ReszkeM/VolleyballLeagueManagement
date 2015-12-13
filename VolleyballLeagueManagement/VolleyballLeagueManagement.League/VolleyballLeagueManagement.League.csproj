@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Services\CalendarService.cs" />
     <Compile Include="Model\BootstrapLeagueContext.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Game.cs" />
@@ -79,7 +80,6 @@
   <ItemGroup>
     <Folder Include="Domain\Commands\" />
     <Folder Include="Domain\Handlers\" />
-    <Folder Include="Domain\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
