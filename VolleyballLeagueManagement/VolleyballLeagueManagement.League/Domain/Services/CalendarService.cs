@@ -111,6 +111,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
 
             for (var i = 0; i < roundsCount; i++)
             {
+                // TODO complete group and game fields
                 var round = new Round { Games = new List<Game>() };
 
                 for (var j = 0; j < groupTwo.Length; j++)
