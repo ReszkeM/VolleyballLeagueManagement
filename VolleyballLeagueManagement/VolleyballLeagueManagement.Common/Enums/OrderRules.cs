@@ -2,6 +2,7 @@
 {
     public enum OrderRules
     {
+        None,
         Points,
         WinGames,
         SetsRatio,
