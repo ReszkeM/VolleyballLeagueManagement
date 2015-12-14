@@ -48,7 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\Commands\AddGameResultCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateGameDateCommand.cs" />
+    <Compile Include="Domain\Commands\UpdateGameResultCommand.cs" />
     <Compile Include="Domain\Handlers\DirectMatchRuleHandler.cs" />
+    <Compile Include="Domain\Handlers\LeagueCommandHandler.cs" />
     <Compile Include="Domain\Handlers\OrderRuleHandler.cs" />
     <Compile Include="Domain\Handlers\PointsRuleHandler.cs" />
     <Compile Include="Domain\Handlers\SetsRatioRuleHandler.cs" />
@@ -97,9 +101,7 @@
     <Compile Include="QueryObjects\LeagueExtensions.cs" />
     <Compile Include="QueryObjects\TeamExtensions.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Domain\Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
       <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
