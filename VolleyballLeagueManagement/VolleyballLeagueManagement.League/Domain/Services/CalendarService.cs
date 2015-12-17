@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.Common.Infrastructure;
 using VolleyballLeagueManagement.League.Model;
+using VolleyballLeagueManagement.League.QueryObjects;
 
 namespace VolleyballLeagueManagement.League.Domain.Services
 {
@@ -23,7 +23,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         {
             using (var dbContext = new LeagueDataContext())
             {
-                league = dbContext.Leagues.SingleOrDefault(l => l.Id == leagueId);
+                league = dbContext.Leagues.GetLeagueById(leagueId);
 
                 if (league == null)
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");

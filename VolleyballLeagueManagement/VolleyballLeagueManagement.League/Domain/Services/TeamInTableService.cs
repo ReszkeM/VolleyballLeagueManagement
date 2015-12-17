@@ -10,6 +10,8 @@ namespace VolleyballLeagueManagement.League.Domain.Services
     /// </summary>
     public class TeamInTableService
     {
+        #region private fields
+
         private const int WinGame = 3;
         private readonly int teamId;
         private readonly string teamName;
@@ -36,6 +38,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         private int LoseToOne = 0;
         private int LoseToTwo = 0;
 
+        #endregion
 
         public TeamInTableService(int teamId, string teamName)
         {
