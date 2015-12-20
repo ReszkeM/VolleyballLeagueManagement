@@ -10,7 +10,7 @@ using VolleyballLeagueManagement.Management.QueryObjects;
 
 namespace VolleyballLeagueManagement.UI.Web.Controllers
 {
-    [CustomAuthorization(Role.TeamManager)]
+    [RoleAuthorize(Role.TeamManager)]
     public class TeamManagementController : BaseController
     {
         [HttpGet]

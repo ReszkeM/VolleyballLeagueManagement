@@ -28,6 +28,16 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return league.ToViewModel();
         }
 
+        public static LeaguePreviewViewModel FindLeagueByTeamId(this IQueryable<League> leagues, int teamId)
+        {
+            var league = leagues.FirstOrDefault(l => l.Teams.Any(t => t.Id == teamId));
+
+            if (league == null)
+                return null;
+
+            return league.ToViewModel();
+        }
+
         public static LeaguePreviewViewModel FindLeagueByCity(this IQueryable<League> leagues, string city)
         {
             var league = leagues.FirstOrDefault(u => u.SportsHall.City == city);
@@ -99,6 +109,7 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
         {
             return new LeaguePreviewViewModel
             {
+                LeagueId = league.Id,
                 Name = league.Name,
                 City = league.SportsHall.City,
                 Status = league.Status,

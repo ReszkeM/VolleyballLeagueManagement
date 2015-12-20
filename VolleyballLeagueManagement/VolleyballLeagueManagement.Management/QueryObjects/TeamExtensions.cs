@@ -73,6 +73,13 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return team.Players.ToViewModel();
         }
 
+        public static ICollection<PlayerViewModel> GetPlayersByTeamId(this IQueryable<Player> players, int teamId)
+        {
+            var teamPlayers = players.Where(p => p.TeamId == teamId).ToList();
+
+            return teamPlayers.ToViewModel();
+        }
+
         public static ICollection<TeamPreviewViewModel> ToViewModel(this ICollection<Team> teams)
         {
             return teams.Select(t => new TeamPreviewViewModel
