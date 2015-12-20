@@ -1,12 +1,20 @@
 # VolleyballLeagueManagement
-Web app to manage volleyball league
+Serwis internetowy do tworzenia i zarzdzania ligami siatkówki wedug zaożeń regulaminu
 
-MyEngineering Thesis
-Created using:
+Wykorzystane technologie:
 - ASP .NET MVC 4
-- Cookie authentication
-- EntityFramework 6
+- JavaScript(jQuery)
 - Bootstrap framework
+- Entity Framework
+
+Wykorzystane wzorce:
 - CQRS pattern
-- KnockoutJS
-- TypeScript
+- Chain of Responsibility
+
+Wykorzystane mechanizmy
+- Cookie authentication
+- Extension methods
+
+Baza danych:
+- SQL Server 12.0
+- MS SQL Server Management Studio
