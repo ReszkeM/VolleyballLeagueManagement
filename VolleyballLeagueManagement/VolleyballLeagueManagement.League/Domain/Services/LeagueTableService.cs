@@ -45,7 +45,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         public ICollection<TeamInTableViewModel> ExecuteTableOrderRules()
         {
             ICollection<TeamInTableViewModel> teamsStats = GetTeamsStats();
-            ExecuteOrderRules(teamsStats);
+            ExecuteOrderRules(ref teamsStats);
             return teamsStats;
         }
 
@@ -71,7 +71,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         /// Using Chain of Responsibility design pattern
         /// </summary>
         /// <param name="teamsStats"></param>
-        private void ExecuteOrderRules(ICollection<TeamInTableViewModel> teamsStats)
+        private void ExecuteOrderRules(ref ICollection<TeamInTableViewModel> teamsStats)
         {
             OrderRuleHandler h1 = new DirectMatchRuleHandler();
             OrderRuleHandler h2 = new PointsRuleHandler();

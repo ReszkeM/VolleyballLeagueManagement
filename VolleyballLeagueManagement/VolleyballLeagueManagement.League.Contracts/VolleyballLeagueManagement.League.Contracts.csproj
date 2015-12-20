@@ -44,6 +44,7 @@
     <Compile Include="ViewModels\GameViewModel.cs" />
     <Compile Include="ViewModels\RoundViewModel.cs" />
     <Compile Include="ViewModels\SetViewModel.cs" />
+    <Compile Include="ViewModels\TeamCalendarViewModel.cs" />
     <Compile Include="ViewModels\TeamInTableViewModel.cs" />
     <Compile Include="ViewModels\UpdateGameDateViewModel.cs" />
   </ItemGroup>

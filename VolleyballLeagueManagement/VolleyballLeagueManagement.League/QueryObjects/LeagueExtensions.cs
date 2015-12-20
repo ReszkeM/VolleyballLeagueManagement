@@ -28,6 +28,13 @@ namespace VolleyballLeagueManagement.League.QueryObjects
             return calendarViewModel;
         }
 
+        public static TeamCalendarViewModel GetTeamCalendarByLeagueId(this IQueryable<Team> teams, int teamId)
+        {
+            Team team = teams.SingleOrDefault(t => t.Id == teamId);
+
+            return team.ToViewModel();
+        }
+
         public static string GetGameResult(this ICollection<SetViewModel> sets)
         {
             int firstTeamSets = 0;
@@ -77,6 +84,32 @@ namespace VolleyballLeagueManagement.League.QueryObjects
                     Games = r.Games.Select(g => g.ToViewModel()).ToList()
                 }).ToList()
             };
+        }
+
+        private static TeamCalendarViewModel ToViewModel(this Team team)
+        {
+            return new TeamCalendarViewModel
+            {
+                TeamId = team.Id,
+                TeamName = team.Name,
+                Games = team.GetGames()
+            };
+        }
+
+        private static ICollection<GameViewModel> GetGames(this Team team)
+        {
+            var model = new List<GameViewModel>();
+            ICollection<Round> rounds = team.League.Calendar.Rounds;
+
+            foreach (var round in rounds)
+            {
+                model.AddRange(round.Games
+                        .Where(g => g.FirstTeamId == team.Id || g.SecondTeamId == team.Id)
+                        .Select(g => g.ToViewModel())
+                        .ToList()
+                    );
+            }
+            return model;
         }
     }
 }

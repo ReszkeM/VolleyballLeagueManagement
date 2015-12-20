@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using VolleyballLeagueManagement.Management.Contracts.ViewModels;
 using VolleyballLeagueManagement.Management.Model;
@@ -9,6 +8,19 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
 {
     public class ReviewController : BaseController
     {
+        [HttpGet]
+        public ActionResult League(int teamId)
+        {
+            LeaguePreviewViewModel model;
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Leagues.FindLeagueByTeamId(teamId);
+            }
+
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult Leagues()
         {
@@ -30,6 +42,19 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             using (var dbContext = new ManagementDataContext())
             {
                 model = dbContext.Teams.FindAllTeams();
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Players(int teamId)
+        {
+            ICollection<PlayerViewModel> model;
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Players.GetPlayersByTeamId(teamId);
             }
 
             return View(model);

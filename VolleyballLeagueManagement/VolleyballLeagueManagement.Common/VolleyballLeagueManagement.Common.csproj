@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Authentication\ApplicationUser.cs" />
     <Compile Include="Authentication\CookieHandler.cs" />
-    <Compile Include="CustomAttributes\CustomAuthorizationAttribute.cs" />
+    <Compile Include="CustomAttributes\RoleAuthorize.cs" />
     <Compile Include="Enums\Days.cs" />
     <Compile Include="Enums\LeagueStatus.cs" />
     <Compile Include="Enums\OrderRules.cs" />

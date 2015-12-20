@@ -6,11 +6,11 @@ using VolleyballLeagueManagement.Common.Extensions;
 
 namespace VolleyballLeagueManagement.Common.CustomAttributes
 {
-    public class CustomAuthorizationAttribute : AuthorizeAttribute
+    public class RoleAuthorize : AuthorizeAttribute
     {
         public Role Role { get; set; }
 
-        public CustomAuthorizationAttribute(Role role)
+        public RoleAuthorize(Role role)
         {
             Role = role;
         }
