@@ -1,4 +1,6 @@
-﻿namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
+﻿using VolleyballLeagueManagement.Common.Enums;
+
+namespace VolleyballLeagueManagement.Management.Contracts.ViewModels
 {
     public class AddPlayerViewModel
     {
@@ -14,6 +16,6 @@
 
         public int Growth { get; set; }
 
-        public int PositionValue { get; set; }
+        public Position Position { get; set; }
     }
 }

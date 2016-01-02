@@ -133,7 +133,7 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
                 LastName = command.LastName,
                 Age = command.Age,
                 Growth = command.Growth,
-                Position = (Position)command.PositionValue,
+                Position = command.Position,
                 IsCapitan = command.IsCapitan,
             };
         }

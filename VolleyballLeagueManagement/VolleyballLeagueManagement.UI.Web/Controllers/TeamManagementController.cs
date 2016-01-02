@@ -148,6 +148,23 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult AddPlayer()
+        {
+            var model = new AddPlayerViewModel();
+
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                var team = dbContext.Teams.FindTeamByUserId(user.UserId);
+
+                model.TeamId = team.Id;
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult AddPlayer(AddPlayerCommand command)
         {

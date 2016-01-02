@@ -1,4 +1,13 @@
 ﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.LeaguePreviewViewModel
+
+<style>
+    .dl-horizontal dt {
+        width: 300px;
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+</style>
+
 @if (Model == null)
 {
     <h4>Twoja drużyna jeszcze nie jest zapisana do żadnej ligi</h4>
@@ -6,13 +15,13 @@
 else
 {
     <div>
-        <h4>LeaguePreviewViewModel</h4>
+        <h4>Liga do której zapisana jest Twoja drużyna</h4>
         <hr />
         <dl class="dl-horizontal">
             @Html.HiddenFor(model => model.LeagueId)
 
             <dt>
-                @Html.DisplayNameFor(model => model.Name)
+                Nazwa
             </dt>
 
             <dd>
@@ -20,7 +29,7 @@ else
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.City)
+                Miasto
             </dt>
 
             <dd>
@@ -28,7 +37,7 @@ else
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ApprovedTeams)
+                Liczba zaakceptowanych drużyn
             </dt>
 
             <dd>
@@ -36,7 +45,7 @@ else
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.TeamsLimit)
+                Limit drużyn
             </dt>
 
             <dd>
@@ -44,23 +53,23 @@ else
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.ApplicationDeadline)
+                Termin zapisów
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.ApplicationDeadline)
+                @Model.ApplicationDeadline.ToString("D")
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.StartTime)
+                Data startu ligi
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.StartTime)
+                @Model.StartTime.ToString("D")
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Day)
+                Dzień rozgrywania meczy
             </dt>
 
             <dd>
@@ -70,9 +79,9 @@ else
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Zobacz tabelę", "Index") |
+        @Html.ActionLink("Zobacz tabelę", "Table", "League", new { leagueId = Model.LeagueId }, null) |
         @Html.ActionLink("Najlepsi zawodnicy", "Index") |
-        @Html.ActionLink("Terminarz", "Index")
+        @Html.ActionLink("Terminarz", "Calendar", "League", new { leagueId = Model.LeagueId }, null) |
         @Html.ActionLink("Opuść ligę", "LeaveLeague", "TeamManagement")
     </p>
 }

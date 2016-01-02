@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<VolleyballLeagueManagement.Management.Contracts.ViewModels.PlayerViewModel>
 
+<h4>Zarządzaj graczami</h4>
+<br />
+
 <p>
-    @Html.ActionLink("Create New", "AddPlayer")
+    @Html.ActionLink("Dodaj", "AddPlayer")
 </p>
+
 <table class="table">
     <tr>
         <th>
@@ -40,9 +44,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Growth)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "EditPlayer", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "RemovePlayer", new { id=item.Id })
+        <td style="text-align: right">
+            @Html.ActionLink("Edytuj", "EditPlayer", new { id=item.Id }) |
+            @Html.ActionLink("Usuń", "RemovePlayer", new { id=item.Id })
         </td>
     </tr>
 }

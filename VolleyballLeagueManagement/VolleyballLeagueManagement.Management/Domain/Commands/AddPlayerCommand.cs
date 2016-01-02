@@ -1,4 +1,5 @@
-﻿using VolleyballLeagueManagement.Common.Interfaces.Messaging;
+﻿using VolleyballLeagueManagement.Common.Enums;
+using VolleyballLeagueManagement.Common.Interfaces.Messaging;
 
 namespace VolleyballLeagueManagement.Management.Domain.Commands
 {
@@ -16,6 +17,6 @@ namespace VolleyballLeagueManagement.Management.Domain.Commands
 
         public int Growth { get; set; }
 
-        public int PositionValue { get; set; }
+        public Position Position { get; set; }
     }
 }

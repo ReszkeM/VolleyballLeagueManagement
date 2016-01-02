@@ -116,6 +116,7 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
         {
             return new TeamPreviewViewModel
             {
+                Id = team.Id,
                 Name = team.Name,
                 Status = team.Status,
                 CoachFirstName = team.Coach.FirstName,
