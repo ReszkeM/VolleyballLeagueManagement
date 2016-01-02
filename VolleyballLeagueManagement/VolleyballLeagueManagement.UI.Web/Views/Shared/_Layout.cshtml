@@ -11,8 +11,9 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black">
         <div class="container">
-            <div class="navbar-header">
+            <div class="navbar-header col-md-5">
                 @Html.ActionLink("MojaLiga.pl", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.Partial("_RoleMenuPartial")
             </div>
             <div class="navbar-collapse collapse">
                 @Html.Partial("_LoginPartial")

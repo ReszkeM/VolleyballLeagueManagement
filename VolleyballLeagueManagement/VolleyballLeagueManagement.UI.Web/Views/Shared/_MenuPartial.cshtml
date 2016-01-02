@@ -1,37 +1,8 @@
-﻿@using VolleyballLeagueManagement.Common.Enums
-@if (User.IsInRole(Role.LeagueManager.ToString()))
-{
-    <ul class="nav navbar-nav">
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Review", "Index", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Create", "Create", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Remove", "Remove", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Address", "UpdateSportsHall", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Informations", "UpdateInformations", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Regulations", "UpdateRegulations", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("TableOrderRules", "UpdateTableOrderRules", "LeagueManagement")</li>
-        <li style="width: 135px; text-align: center">@Html.ActionLink("Teams", "Teams", "LeagueManagement")</li>
-    </ul>
-}
-else if (User.IsInRole(Role.TeamManager.ToString()))
-{
-    <ul class="nav navbar-nav">
-        <li style="width: 154px; text-align: center">@Html.ActionLink("Review", "Index", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("Create", "Create", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("Remove", "Remove", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("Coach", "UpdateCoach", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("PlayersManage", "PlayersManage", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("ViewMyLeague", "MyLeague", "TeamManagement")</li>
-        <li style="width: 154px; text-align: center">@Html.ActionLink("JoinToLeague", "JoinLeague", "TeamManagement")</li>
-    </ul>
-}
-else 
-{
-    <ul class="nav navbar-nav">
-        <li style="width: 179px; text-align: center">@Html.ActionLink("Strona główna", "Index", "Home")</li>
-        <li style="width: 179px; text-align: center">@Html.ActionLink("O stronie", "About", "Home")</li>
-        <li style="width: 179px; text-align: center">@Html.ActionLink("Ligi", "Leagues", "Review")</li>
-        <li style="width: 179px; text-align: center">@Html.ActionLink("Drużyny", "Teams", "Review")</li>
-        <li style="width: 179px; text-align: center">@Html.ActionLink("Znajdź ligę", "FindLeague", "Review")</li>
-        <li style="width: 179px; text-align: center">@Html.ActionLink("Znajdź drużynę", "FindTeam", "Review")</li>
-    </ul>
-}
+﻿<ul class="nav navbar-nav">
+    <li style="width: 179px; text-align: center">@Html.ActionLink("Strona główna", "Index", "Home")</li>
+    <li style="width: 179px; text-align: center">@Html.ActionLink("O stronie", "About", "Home")</li>
+    <li style="width: 179px; text-align: center">@Html.ActionLink("Ligi", "Leagues", "Review")</li>
+    <li style="width: 179px; text-align: center">@Html.ActionLink("Drużyny", "Teams", "Review")</li>
+    <li style="width: 179px; text-align: center">@Html.ActionLink("Znajdź ligę", "FindLeague", "Review")</li>
+    <li style="width: 179px; text-align: center">@Html.ActionLink("Znajdź drużynę", "FindTeam", "Review")</li>
+</ul>
