@@ -2,35 +2,37 @@
 
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
+        <th style="width: 24%">
+            @Html.DisplayName("Nazwa drużyny")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoachFirstName)
+        <th style="width: 23%">
+            @Html.DisplayName("Trener")
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoachLastName)
+        <th style="width: 23%">
+            @Html.DisplayName("Status")
         </th>
-        <th></th>
+        <th style="width: 30%"></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoachFirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoachLastName)
-        </td>
-        <td>
-            @Html.ActionLink("Zobacz zawodników", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Zobacz terminarz", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Zobacz ligę", "League", new { teamId = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @String.Format("{0} {1}", item.CoachFirstName, item.CoachLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td style="text-align: right; padding-right: 30px">
+                @Html.ActionLink("Przegląd", "Team", "Review", new { teamId = item.Id }, null) |
+                @Html.ActionLink("Zawodnicy", "Players", new { teamId = item.Id }) |
+                @Html.ActionLink("Terminarz", "TeamCalendar", "League", new { teamId = item.Id }, null) |
+                @Html.ActionLink("Liga", "League", new { teamId = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

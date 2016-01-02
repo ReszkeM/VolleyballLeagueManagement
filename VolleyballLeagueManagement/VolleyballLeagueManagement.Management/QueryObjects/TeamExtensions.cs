@@ -18,6 +18,16 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return team.ToViewModel();
         }
 
+        public static TeamPreviewViewModel FindTeamById(this IQueryable<Team> teams, int teamId)
+        {
+            var team = teams.FirstOrDefault(u => u.Id == teamId);
+
+            if (team == null)
+                return new TeamPreviewViewModel();
+
+            return team.ToViewModel();
+        }
+
         public static TeamPreviewViewModel FindTeamByName(this IQueryable<Team> teams, string name)
         {
             var team = teams.FirstOrDefault(u => u.Name == name);

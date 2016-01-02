@@ -1,0 +1,76 @@
+﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.RegulationsViewModel
+
+<style>
+    .dl-horizontal dt {
+        width: 250px;
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+</style>
+
+<div>
+    <h4>Regulamin ligi: @Model.LeagueName</h4>
+    <hr/>
+
+    <dl class="dl-horizontal">
+        <dt>
+            Limit drużyn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamsLimit)
+        </dd>
+
+        <dt>
+            Limit graczy w drużynie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlayersLimit)
+        </dd>
+
+        <dt>
+            Wpisowe
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryFee)
+        </dd>
+
+        <dt>
+            Playoffs
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Playoffs)
+        </dd>
+
+        <dt>
+            Data rozpoczęcia rozgrywek
+        </dt>
+
+        <dd>
+            @Model.StartTime.ToString("D")
+        </dd>
+
+        <dt>
+            Data zakończenia rozgrywek
+        </dt>
+
+        <dd>
+            @Model.EndTime.ToString("D")
+        </dd>
+
+        <dt>
+            Termin zapisów
+        </dt>
+
+        <dd>
+            @Model.ApplicationDeadline.ToString("D")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Powrót do ligi", "League", new { leagueId = Model.LeagueId })
+</p>

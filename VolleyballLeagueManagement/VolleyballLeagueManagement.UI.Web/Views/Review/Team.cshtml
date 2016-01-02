@@ -1,37 +1,45 @@
 ﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.TeamPreviewViewModel
 
-<div>
-    <h4>TeamPreviewViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+@if (Model == null)
+{
+    <h4> Nie znaleziono drużyny</h4>
+}
+else
+{
+    <div>
+        <h4>Przegląd drużyny</h4>
+        <hr/>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoachFirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoachFirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CoachFirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CoachLastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CoachFirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CoachLastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CoachLastName)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Zobacz graczy", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Zobacz ligę", "Index")
-    @Html.ActionLink("Zobacz terminarz", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.CoachLastName)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Zobacz graczy", "Edit", new {id = Model.Id}) |
+        @Html.ActionLink("Zobacz ligę", "Index") |
+        @Html.ActionLink("Zobacz terminarz", "Index")
+    </p>
+}

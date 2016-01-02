@@ -1,0 +1,40 @@
+﻿@model IEnumerable<VolleyballLeagueManagement.Management.Contracts.ViewModels.PlayerViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Gracz")
+        </th>
+        <th>
+            @Html.DisplayName("Kapitan")
+        </th>
+        <th>
+            @Html.DisplayName("Wiek")
+        </th>
+        <th>
+            @Html.DisplayName("Wzrost")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @String.Format("{0} {1}", item.FirstName, item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCapitan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Growth)
+        </td>
+        <td style="text-align: right; padding-right: 30px">
+            @Html.ActionLink("Zobacz statystyki", "Teams", new { playerId = item.Id })
+        </td>
+    </tr>
+}
+
+</table>

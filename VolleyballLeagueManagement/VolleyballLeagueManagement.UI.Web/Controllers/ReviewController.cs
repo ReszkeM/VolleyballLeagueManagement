@@ -9,13 +9,43 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
     public class ReviewController : BaseController
     {
         [HttpGet]
-        public ActionResult League(int teamId)
+        public ActionResult League(int? teamId, int? leagueId)
         {
-            LeaguePreviewViewModel model;
+            LeaguePreviewViewModel model = null;
 
             using (var dbContext = new ManagementDataContext())
             {
-                model = dbContext.Leagues.FindLeagueByTeamId(teamId);
+                if (teamId.HasValue)
+                    model = dbContext.Leagues.FindLeagueByTeamId((int)teamId);
+
+                if (leagueId.HasValue)
+                    model = dbContext.Leagues.FindLeagueById((int)leagueId);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Regulations(int leagueId)
+        {
+            RegulationsViewModel model;
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Leagues.FindRegulationsByLeagueId(leagueId);
+            }
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Team(int teamId)
+        {
+            TeamPreviewViewModel model;
+
+            using (var dbContext = new ManagementDataContext())
+            {
+                model = dbContext.Teams.FindTeamById(teamId);
             }
 
             return View(model);
@@ -88,14 +118,14 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         [HttpPost]
         public ActionResult FindLeague(FindViewModel viewModel)
         {
-            LeaguePreviewViewModel model;
+            ICollection<LeaguePreviewViewModel> model;
 
             using (var dbContext = new ManagementDataContext())
             {
-                model = dbContext.Leagues.FindLeagueByCity(viewModel.Input);
+                model = dbContext.Leagues.FindLeaguesByCity(viewModel.Input);
             }
 
-            return View("League", model);
+            return View("Leagues", model);
         }
     }
 }

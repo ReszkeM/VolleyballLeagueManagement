@@ -1,13 +1,12 @@
 ﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.LeaguePreviewViewModel
 
 <div>
-    <h4>LeaguePreviewViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        @Html.HiddenFor(model => model.LeagueId)
+    <h4>Informacje o wybranej lidze</h4>
+    <hr/>
 
+    <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+           @Html.DisplayName("Nazwa")
         </dt>
 
         <dd>
@@ -15,7 +14,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.City)
+            @Html.DisplayName("Miasto")
         </dt>
 
         <dd>
@@ -23,7 +22,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ApprovedTeams)
+            @Html.DisplayName("Ilość drużyn")
         </dt>
 
         <dd>
@@ -31,7 +30,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TeamsLimit)
+            @Html.DisplayName("Limit drużyn")
         </dt>
 
         <dd>
@@ -39,20 +38,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ApplicationDeadline)
+            @Html.DisplayName("Termin zapisów")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ApplicationDeadline)
+            @Model.ApplicationDeadline.ToString("D")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
+            @Html.DisplayName("Data startu")
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.StartTime)
+            @Model.StartTime.ToString("D")
         </dd>
+
+        <dt>
+            @Html.DisplayName("Dzień rozgrywek")
+        </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Day)
@@ -60,7 +63,8 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Zobacz drużyny", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Zobacz tabelę", "Index")
-    @Html.ActionLink("Zobacz terminarz", "Index")
+    @Html.ActionLink("Regulamin", "Regulations", new { leagueId = Model.LeagueId }) |
+    @Html.ActionLink("Drużyny", "Teams", new { leagueId = Model.LeagueId }) |
+    @Html.ActionLink("Tabela", "Table", "League", new { leagueId = Model.LeagueId }, null) |
+    @Html.ActionLink("Terminarz", "Calendar", "League", new { leagueId = Model.LeagueId }, null) 
 </p>

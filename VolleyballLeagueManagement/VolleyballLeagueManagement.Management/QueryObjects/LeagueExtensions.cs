@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using VolleyballLeagueManagement.Common.Enums;
 using VolleyballLeagueManagement.Management.Contracts.ViewModels;
 using VolleyballLeagueManagement.Management.Model;
 
@@ -28,6 +29,16 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return league.ToViewModel();
         }
 
+        public static LeaguePreviewViewModel FindLeagueById(this IQueryable<League> leagues, int leagueId)
+        {
+            var league = leagues.FirstOrDefault(u => u.Id == leagueId);
+
+            if (league == null)
+                return null;
+
+            return league.ToViewModel();
+        }
+
         public static LeaguePreviewViewModel FindLeagueByTeamId(this IQueryable<League> leagues, int teamId)
         {
             var league = leagues.FirstOrDefault(l => l.Teams.Any(t => t.Id == teamId));
@@ -38,12 +49,9 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
             return league.ToViewModel();
         }
 
-        public static LeaguePreviewViewModel FindLeagueByCity(this IQueryable<League> leagues, string city)
+        public static ICollection<LeaguePreviewViewModel> FindLeaguesByCity(this IQueryable<League> leagues, string city)
         {
-            var league = leagues.FirstOrDefault(u => u.SportsHall.City == city);
-
-            if (league == null)
-                return null;
+            var league = leagues.Where(u => u.SportsHall.City == city);
 
             return league.ToViewModel();
         }
@@ -56,6 +64,13 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 return null;
 
             return team.League.ToViewModel();
+        }
+
+        public static RegulationsViewModel FindRegulationsByLeagueId(this IQueryable<League> leagues, int leagueId)
+        {
+            var league = leagues.FirstOrDefault(l => l.Id == leagueId);
+
+            return league.GetRegulations();
         }
 
         public static UpdateSportsHallViewModel GetSportsHallByUserId(this IQueryable<League> leagues, int userId)
@@ -221,6 +236,33 @@ namespace VolleyballLeagueManagement.Management.QueryObjects
                 TeamsLimit = league.Regulations.TeamsLimit,
                 Day = league.Regulations.Day
             }).ToList();
+        }
+
+        private static RegulationsViewModel GetRegulations(this League league)
+        {
+            return new RegulationsViewModel
+            {
+                Id = league.Regulations.Id,
+                LeagueId = league.Id,
+                LeagueName = league.Name,
+                ApplicationDeadline = league.Regulations.ApplicationDeadline,
+                StartTime = league.Regulations.StartTime,
+                EndTime = league.Regulations.EndTime,
+                Day = league.Regulations.Day,
+                DocumentId = league.Regulations.DocumentId,
+                EntryFee = league.Regulations.EntryFee,
+                Playoffs = league.Regulations.Playoffs,
+                PlayersLimit = league.Regulations.PlayersLimit,
+                TeamsLimit = league.Regulations.TeamsLimit,
+                TableOrderRules = new List<OrderRules>
+                {
+                    league.Regulations.TableOrderRules.FirstRule,
+                    league.Regulations.TableOrderRules.SecondRule,
+                    league.Regulations.TableOrderRules.ThirdRule,
+                    league.Regulations.TableOrderRules.FourthRule,
+                    league.Regulations.TableOrderRules.FifthRule
+                }
+            };
         }
     }
 }

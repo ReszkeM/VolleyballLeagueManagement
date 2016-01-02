@@ -47,6 +47,7 @@
     <Compile Include="ViewModels\LeaguePreviewViewModel.cs" />
     <Compile Include="ViewModels\LeagueTeamsViewModel.cs" />
     <Compile Include="ViewModels\PlayerViewModel.cs" />
+    <Compile Include="ViewModels\RegulationsViewModel.cs" />
     <Compile Include="ViewModels\RemoveViewModel.cs" />
     <Compile Include="ViewModels\TeamPreviewViewModel.cs" />
     <Compile Include="ViewModels\UpdateCoachViewModel.cs" />
@@ -66,6 +67,10 @@
     <ProjectReference Include="..\VolleyballLeagueManagement.Common\VolleyballLeagueManagement.Common.csproj">
       <Project>{1B7F7F50-1FCC-48FB-82BA-A9B5FF341D68}</Project>
       <Name>VolleyballLeagueManagement.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolleyballLeagueManagement.League\VolleyballLeagueManagement.League.csproj">
+      <Project>{31D490AE-157B-4C4F-AEEF-550698FC7383}</Project>
+      <Name>VolleyballLeagueManagement.League</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
