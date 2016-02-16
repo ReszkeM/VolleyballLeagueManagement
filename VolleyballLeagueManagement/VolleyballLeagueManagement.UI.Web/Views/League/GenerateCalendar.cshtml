@@ -1,0 +1,34 @@
+﻿@model VolleyballLeagueManagement.League.Contracts.ViewModels.GenerateCalendarViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <section id="loginForm">
+            @using (Html.BeginForm("GenerateCalendar", "League", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.LeagueId)
+
+                <div class="form-horizontal">
+                    <h4>Generowanie kalendarza rozgrywek</h4>
+
+                    <hr />
+
+                    <div class="jumbotron col-lg-offset-2 col-lg-8" style="background-color: dimgrey">
+                        <div>
+                            <p>
+                                Czy aby na pewno chcesz wygenerować kalendarz rozgrywek w tej chwili?
+                                Jeśli zrobisz to w tej chwili, zapisy do ligi zostaną zamknięte.
+                                Nie będzie już możliwości cofnięcia tej operacji.
+                            </p>
+                        </div>
+
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="Generuj kalendarz" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </section>
+    </div>
+</div>

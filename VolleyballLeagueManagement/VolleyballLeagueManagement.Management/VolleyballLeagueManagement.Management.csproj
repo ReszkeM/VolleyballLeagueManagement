@@ -112,6 +112,10 @@
     <Compile Include="Model\Migrations\201512122252153_AddGamesDay.Designer.cs">
       <DependentUpon>201512122252153_AddGamesDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\Migrations\201601212324511_AddLeagueToApproveToTeam.cs" />
+    <Compile Include="Model\Migrations\201601212324511_AddLeagueToApproveToTeam.Designer.cs">
+      <DependentUpon>201601212324511_AddLeagueToApproveToTeam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\SportsHall.cs" />
     <Compile Include="Model\BootstrapManagementContext.cs" />
     <Compile Include="Model\Coach.cs" />
@@ -174,6 +178,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512122252153_AddGamesDay.resx">
       <DependentUpon>201512122252153_AddGamesDay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201601212324511_AddLeagueToApproveToTeam.resx">
+      <DependentUpon>201601212324511_AddLeagueToApproveToTeam.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

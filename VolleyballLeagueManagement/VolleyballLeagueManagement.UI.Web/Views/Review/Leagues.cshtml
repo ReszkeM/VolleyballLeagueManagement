@@ -6,6 +6,8 @@
 }
 else
 {
+    <h4> Dostępne ligi </h4>
+    
     <table class="table">
         <tr>
             <th>
@@ -56,7 +58,7 @@ else
                 <td>
                     @Html.DisplayFor(modelItem => item.Day)
                 </td>
-                <td>
+                <td style="width: 270px">
                     @Html.ActionLink("Przegląd", "League", new {leagueId = item.LeagueId}) |
                     @Html.ActionLink("Drużyny", "Teams", new {leagueId = item.LeagueId}) |
                     @Html.ActionLink("Tabela", "Table", "League", new {leagueId = item.LeagueId}, null) |

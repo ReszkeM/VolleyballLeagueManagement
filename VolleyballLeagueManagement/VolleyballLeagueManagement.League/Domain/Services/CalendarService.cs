@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.Common.Infrastructure;
@@ -15,6 +16,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         private Model.League league;
         private Calendar calendar;
         private bool isEvenNumberOfTeams;
+        private DateTime roundDate;
         private Team[] teams;
         private Team[] groupOne;
         private Team[] groupTwo;
@@ -29,6 +31,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
                     throw new ServerSideException("Ups, something went wrong! Refresh page and try agine");
 
                 teams = league.Teams.ToArray();
+                roundDate = league.Regulations.StartTime;
                 isEvenNumberOfTeams = teams.Length.IsEvenNumber();
 
                 SplitTeamsIntoGroups();
@@ -51,8 +54,6 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         {
             return new Calendar
             {
-                League = league,
-                LeagueId = league.Id,
                 Rounds = new List<Round>()
             };
         }
@@ -107,27 +108,39 @@ namespace VolleyballLeagueManagement.League.Domain.Services
             // Rounds count depends on teams count parity 
             // If teams count is even number, number of rounds is teams count - 1.
             // Else number of rounds is teams count
-            int roundsCount = isEvenNumberOfTeams ? teams.Length : teams.Length - 1;
+            int roundsCount = isEvenNumberOfTeams ? teams.Length - 1 : teams.Length;  
 
             for (var i = 0; i < roundsCount; i++)
             {
-                // TODO complete group and game fields
-                var round = new Round { Games = new List<Game>() };
+                DateTime dateWithHours = roundDate;
+                var round = new Round
+                {
+                    Games = new List<Game>(),
+                    Date = roundDate,
+                    Number = i + 1
+                };
 
                 for (var j = 0; j < groupTwo.Length; j++)
                 {
-                    round.Games.Add(NewGame(j));
+                    round.Games.Add(NewGame(j, dateWithHours));
+                    dateWithHours = dateWithHours.AddHours(2);
                 }
 
                 SwitchTeams();
+                roundDate = roundDate.AddDays(7);
                 calendar.Rounds.Add(round);
             }
             return calendar;
         }
 
-        private Game NewGame(int index)
+        private Game NewGame(int index, DateTime dateWithHours)
         {
-            return new Game { FirstTeam = groupOne[index], SecondTeam = groupTwo[index] };
+            return new Game
+            {
+                FirstTeamId = groupOne[index].Id, 
+                SecondTeamId = groupTwo[index].Id,
+                Date = dateWithHours
+            };
         }
 
         /// <summary>
@@ -156,7 +169,7 @@ namespace VolleyballLeagueManagement.League.Domain.Services
             }
             groupOne[groupOne.Length - 1] = tmp2;
 
-            for (int i = 1; i < groupTwo.Length; i++)
+            for (int i = groupTwo.Length - 1; i > 0; i--)
             {
                 groupTwo[i] = groupTwo[i - 1];
             }

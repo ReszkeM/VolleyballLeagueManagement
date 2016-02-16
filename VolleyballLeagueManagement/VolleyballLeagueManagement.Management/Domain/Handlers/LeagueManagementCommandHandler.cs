@@ -225,14 +225,17 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
             if (accept)
             {
                 league.TeamsWaitingForApprove.Remove(team);
+                team.LeagueToApprove = null;
                 league.Teams.Add(team);
                 team.Status = TeamStatus.Approved;
+                team.League = league;
             }
             else
             {
                 league.TeamsWaitingForApprove.Remove(team);
+                team.LeagueToApprove = null;
                 team.League = null;
-                team.LeagueId = null;
+                //team.LeagueId = null;
                 team.Status = TeamStatus.Rejected;
             }
         }

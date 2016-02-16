@@ -23,7 +23,7 @@
                 @team.Name
             </td>
             <td>
-                @team.Status.ToString()
+                @Html.DisplayFor(modelItem => team.Status)
             </td>
             <td>
                 @String.Format("{0} {1}", @team.CoachFirstName, @team.CoachLastName)
@@ -53,14 +53,14 @@
         </th>
     </tr>
 
-    @foreach (var team in Model.Teams)
+    @foreach (var team in Model.TeamsToApprove)
     {
         <tr>
             <td>
                 @team.Name
             </td>
             <td>
-                @team.Status.ToString()
+                @Html.DisplayFor(modelItem => team.Status)
             </td>
             <td>
                 @String.Format("{0} {1}", @team.CoachFirstName, @team.CoachLastName)

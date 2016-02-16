@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using VolleyballLeagueManagement.League.Contracts.ViewModels;
+using VolleyballLeagueManagement.League.Extensions;
 using VolleyballLeagueManagement.League.Model;
 
 namespace VolleyballLeagueManagement.League.Domain.Services
@@ -63,20 +64,26 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         {
             foreach (var game in gamesAsFirstTeam)
             {
-                GetFirstTeamPoints(ref winPoints, game.Sets);
-                GetSecondTeamPoints(ref losePoints, game.Sets);
-                var winSetsInMatch = GetFirstTeamSets(game.Sets);
-                var loseSetsInMatch = game.Sets.Count - winSetsInMatch;
-                GetWinner(winSetsInMatch, loseSetsInMatch);
+                if (game.HaveResult())
+                {
+                    GetFirstTeamPoints(ref winPoints, game.Sets);
+                    GetSecondTeamPoints(ref losePoints, game.Sets);
+                    var winSetsInMatch = GetFirstTeamSets(game.Sets);
+                    var loseSetsInMatch = game.Sets.Count - winSetsInMatch;
+                    GetWinner(winSetsInMatch, loseSetsInMatch);
+                }
             }
 
             foreach (var game in gamesAsSecondTeam)
             {
-                GetFirstTeamPoints(ref losePoints, game.Sets);
-                GetSecondTeamPoints(ref winPoints, game.Sets);
-                var winSetsInMatch = GetSecondTeamSets(game.Sets);
-                var loseSetsInMatch = game.Sets.Count - winSetsInMatch;
-                GetWinner(winSetsInMatch, loseSetsInMatch);
+                if (game.HaveResult())
+                {
+                    GetFirstTeamPoints(ref losePoints, game.Sets);
+                    GetSecondTeamPoints(ref winPoints, game.Sets);
+                    var winSetsInMatch = GetSecondTeamSets(game.Sets);
+                    var loseSetsInMatch = game.Sets.Count - winSetsInMatch;
+                    GetWinner(winSetsInMatch, loseSetsInMatch);
+                }
             }
         }
 
@@ -194,10 +201,10 @@ namespace VolleyballLeagueManagement.League.Domain.Services
                 LoseGames = loseGames,
                 WinSets = winSets,
                 LoseSets = loseSets,
-                SetsRatio = (double)winSets / (double)loseSets,
+                SetsRatio = GetRatio(winSets, loseSets),
                 WinPoints = winPoints,
                 LosePoints = losePoints,
-                PointsRatio = (double)winPoints / (double)losePoints,
+                PointsRatio = GetRatio(winPoints, losePoints),
                 WinToZero = winToZero,
                 WinToOne = winToOne,
                 WinToTwo = winToTwo,
@@ -210,6 +217,11 @@ namespace VolleyballLeagueManagement.League.Domain.Services
         private void Add(ref int number, int value)
         {
             number += value;
+        }
+
+        private double GetRatio(int win, int lose)
+        {
+            return win == 0 && lose == 0 ? lose == 0 ? 0 : (double) win/(double) 1 : (double) win/(double) lose;
         }
     }
 }

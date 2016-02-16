@@ -1,7 +1,7 @@
 ﻿@using VolleyballLeagueManagement.Common.Enums
 @model VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels.UserViewModel
 
-<h2>Rejestruj konto</h2>
+<h2>Rejestracja</h2>
 <hr />
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -13,18 +13,6 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Login, new {@class = "form-control col-md-4"})
             <h4>@Html.ValidationMessageFor(model => model.Login, "", new { @class = "label label-danger col-md-offset-1" })</h4>
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.FirstName, new {@class = "col-md-2 control-label"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.FirstName, new {@class = "form-control"})
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -49,42 +37,12 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Phone, new {@class = "col-md-2 control-label"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
         @Html.LabelFor(m => m.Role, new {@class = "col-md-2 control-label"})
         <div class="col-md-10">
             @Html.DropDownList("Role", EnumHelper.GetSelectList(typeof (Role)), new {@class = "form-control col-md-3"})
         </div>
     </div>
-    <hr />
-    <div class="form-group">
-        @Html.LabelFor(m => m.City, new {@class = "col-md-2 control-label"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Street, new {@class = "col-md-2 control-label"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Street, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.HomeNumber, new {@class = "col-md-2 control-label"})
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.HomeNumber, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.PostCode, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.PostCode, new { @class = "form-control" })
-        </div>
-    </div>
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Utwórz konto" />

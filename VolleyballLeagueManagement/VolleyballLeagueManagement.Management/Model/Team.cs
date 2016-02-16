@@ -20,6 +20,8 @@ namespace VolleyballLeagueManagement.Management.Model
 
         public virtual League League { get; set; }
 
+        public virtual League LeagueToApprove { get; set; }
+
         public virtual Coach Coach { get; set; }
 
         public virtual ICollection<Player> Players { get; set; }

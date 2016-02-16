@@ -159,8 +159,8 @@ namespace VolleyballLeagueManagement.Management.Domain.Handlers
         private void JoinToLeague(League league, Team team)
         {
             league.TeamsWaitingForApprove.Add(team);
-            team.League = league;
-            team.LeagueId = league.Id;
+            team.LeagueToApprove = league;
+            //team.LeagueId = league.Id;
             team.Status = TeamStatus.WaitingForApprove;
         }
 

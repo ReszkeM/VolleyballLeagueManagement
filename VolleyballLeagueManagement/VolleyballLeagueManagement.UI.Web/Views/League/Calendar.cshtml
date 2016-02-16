@@ -1,0 +1,62 @@
+﻿@using VolleyballLeagueManagement.League.QueryObjects
+@model VolleyballLeagueManagement.League.Contracts.ViewModels.CalendarViewModel
+@Html.HiddenFor(modelItem => Model.CalendarId)
+
+@foreach (var round in Model.Rounds)
+{
+    <h4>Runda: @round.Number, data rundy: @round.Date.ToString("D")</h4>
+    <table class="table">
+        <tr>
+            <th>
+                godzina
+            </th>
+            <th>
+                Nazwa drużyny
+            </th>
+            <th>
+                Wynik
+            </th>
+            <th>
+                Nazwa drużyny
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+        @foreach (var game in round.Games)
+        {
+            <tr>
+                <td>
+                    @game.Date.ToString("t")
+                </td>
+                <td>
+                    @game.FirstTeamName
+                </td>
+                <td>
+                    @game.Sets.GetGameResult()
+                </td>
+                <td>
+                    @game.SecondTeamName
+                </td>
+                <td>
+                    @if(game.Sets.GetGameResult() != "0:0")
+                    {
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <input onclick="ViewResult(@game.GameId)" type="button" value="Szczegóły" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+
+<script>
+    function ViewResult(gameId) {
+        var url = "/League/Game?gameId=" + gameId;
+        window.location.href = url;
+    }
+</script>
+

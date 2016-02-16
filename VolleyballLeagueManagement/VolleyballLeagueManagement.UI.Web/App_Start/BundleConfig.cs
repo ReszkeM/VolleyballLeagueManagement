@@ -19,6 +19,9 @@ namespace VolleyballLeagueManagement.UI.Web
                       "~/Scripts/libraries/bootstrap.js",
                       "~/Scripts/libraries/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Actions").Include(
+                     "~/Scripts/Actions/Popup.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",

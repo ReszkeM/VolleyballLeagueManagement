@@ -1,0 +1,37 @@
+﻿@using VolleyballLeagueManagement.League.QueryObjects
+@model VolleyballLeagueManagement.League.Contracts.ViewModels.GameViewModel
+
+<h4>
+    Szczegółowy wynik spotkania
+</h4>
+<hr />
+
+<div class="col-md-offset-1 col-md-10">
+    <div class="jumbotron" style="background-color: dimgrey; min-height: 200px">
+        <h4 style="margin: -15px 0 15px 0; text-align: center">
+            @Model.FirstTeamName @Model.Sets.GetGameResult() @Model.SecondTeamName
+        </h4>
+        <div class="col-md-offset-1 col-md-10">
+            @foreach (var set in Model.Sets)
+            {
+                <div class="col-md-4" style="text-align: right">
+                    Set @set.Number
+                </div>
+                <div class="col-md-4" style="text-align: center">
+                    @set.FirstTeamPoints : @set.SecondTeamPoints
+                </div>
+                <div class="col-md-4" style="text-align: left">
+                    @set.Duration.Minutes
+                </div>
+            }
+        </div>
+
+        <div class="col-md-10" style="margin-top: 15px">
+            @Html.ActionLink("Powrót do kalendarza", "EditCalendar")
+        </div>
+    </div>
+</div>
+<div class="row"></div>
+
+@*TODO MVP*@
+

@@ -10,6 +10,8 @@ namespace VolleyballLeagueManagement.League.Contracts.ViewModels
 
         public TimeSpan Duration { get; set; }
 
+        public int DurationInMinutes { get; set; }
+
         public int FirstTeamPoints { get; set; }
 
         public int SecondTeamPoints { get; set; } 

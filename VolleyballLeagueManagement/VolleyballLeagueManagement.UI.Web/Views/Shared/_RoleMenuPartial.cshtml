@@ -7,29 +7,29 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Zarządzanie<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Review", "Index", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Create", "Create", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Remove", "Remove", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Address", "UpdateSportsHall", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Informations", "UpdateInformations", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Regulations", "UpdateRegulations", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("TableOrderRules", "UpdateTableOrderRules", "LeagueManagement")</li>
-                    <li>@Html.ActionLink("Teams", "Teams", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Stwórz", "Create", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Usuń", "Remove", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Aktualizuj adres", "UpdateSportsHall", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Aktualizuj informacje", "UpdateInformations", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Aktualizuj regulamin", "UpdateRegulations", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Aktualizuj zasady", "UpdateTableOrderRules", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Generuj kalendarz", "GenerateCalendar", "League")</li>
                 </ul>
             </li>
         }
-        @if (User.IsInRole(Role.LeagueManager.ToString()) || User.IsInRole(Role.LeagueContributor.ToString()))
+        @if (User.IsInRole(Role.LeagueManager.ToString()))
         {
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Liga<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("Review", "GenerateCalendar", "League")</li>
-                    <li>@Html.ActionLink("Review", "EditCalendar", "League")</li>
-                    <li>@Html.ActionLink("Create", "Table", "League")</li>
+                    <li>@Html.ActionLink("Informacje", "Index", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Drużyny", "Teams", "LeagueManagement")</li>
+                    <li>@Html.ActionLink("Tabela", "Table", "League")</li>
+                    <li>@Html.ActionLink("Rozgrywki", "EditCalendar", "League")</li>
                 </ul>
             </li>
         }
-        @if (User.IsInRole(Role.TeamManager.ToString()) || User.IsInRole(Role.TeamContributor.ToString()))
+        @if (User.IsInRole(Role.TeamManager.ToString()))
         {
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Moja drużyna<b class="caret"></b></a>

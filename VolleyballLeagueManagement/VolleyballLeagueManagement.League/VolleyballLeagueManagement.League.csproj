@@ -74,6 +74,7 @@
     <Compile Include="Domain\Services\CalendarService.cs" />
     <Compile Include="Domain\Services\LeagueTableService.cs" />
     <Compile Include="Domain\Services\TeamInTableService.cs" />
+    <Compile Include="Extensions\GameExtensions.cs" />
     <Compile Include="Model\BootstrapLeagueContext.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Game.cs" />
@@ -102,6 +103,14 @@
     <Compile Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.cs" />
     <Compile Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.Designer.cs">
       <DependentUpon>201512131722193_AddLeagueIdToTeamEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201601222041493_AddAddressIdToLeague.cs" />
+    <Compile Include="Model\Migrations\201601222041493_AddAddressIdToLeague.Designer.cs">
+      <DependentUpon>201601222041493_AddAddressIdToLeague.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Migrations\201601222146424_MakeMVPIdNullable.cs" />
+    <Compile Include="Model\Migrations\201601222146424_MakeMVPIdNullable.Designer.cs">
+      <DependentUpon>201601222146424_MakeMVPIdNullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\Migrations\Configuration.cs" />
     <Compile Include="Model\Player.cs" />
@@ -146,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Model\Migrations\201512131722193_AddLeagueIdToTeamEntity.resx">
       <DependentUpon>201512131722193_AddLeagueIdToTeamEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201601222041493_AddAddressIdToLeague.resx">
+      <DependentUpon>201601222041493_AddAddressIdToLeague.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model\Migrations\201601222146424_MakeMVPIdNullable.resx">
+      <DependentUpon>201601222146424_MakeMVPIdNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

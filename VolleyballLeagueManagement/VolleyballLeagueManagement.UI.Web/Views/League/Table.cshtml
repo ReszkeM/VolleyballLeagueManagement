@@ -1,0 +1,114 @@
+﻿@model IEnumerable<VolleyballLeagueManagement.League.Contracts.ViewModels.TeamInTableViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Drużyna")
+        </th>
+        <th>
+            @Html.DisplayName("Punkty")
+        </th>
+        <th>
+            @Html.DisplayName("Mecze")
+        </th>
+        <th>
+            @Html.DisplayName("Wygrane mecze")
+        </th>
+        <th>
+            @Html.DisplayName("Przegrane mecze")
+        </th>
+        <th>
+            @Html.DisplayName("3:0")
+        </th>
+        <th>
+            @Html.DisplayName("3:1")
+        </th>
+        <th>
+            @Html.DisplayName("3:2")
+        </th>
+        <th>
+            @Html.DisplayName("0:3")
+        </th>
+        <th>
+            @Html.DisplayName("1:3")
+        </th>
+        <th>
+            @Html.DisplayName("2:3")
+        </th>
+        <th>
+            @Html.DisplayName("Wygrane sety")
+        </th>
+        <th>
+            @Html.DisplayName("Stracone sety")
+        </th>
+        <th>
+            @Html.DisplayName("Stosunek setów")
+        </th>
+        <th>
+            @Html.DisplayName("Zdobyte punkty")
+        </th>
+        <th>
+            @Html.DisplayName("Stracone punkty")
+        </th>
+        <th>
+            @Html.DisplayName("Stosunek punktów")
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Points)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Games)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinGames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoseGames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinToZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinToOne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinToTwo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoseToZero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoseToOne)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoseToTwo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinSets)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoseSets)
+            </td>
+            <td>
+                @item.SetsRatio.ToString("F4")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WinPoints)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LosePoints)
+            </td>
+            <td>
+                @item.PointsRatio.ToString("F4")
+            </td>
+        </tr>
+    }
+</table>

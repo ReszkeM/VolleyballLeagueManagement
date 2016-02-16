@@ -12,7 +12,7 @@ namespace VolleyballLeagueManagement.UsersAccounts.Contracts.ViewModels
         [Required(ErrorMessage = "To pole jest wymagane")]
         public string Password { get; set; }
 
-        [DisplayName("Zapamiętaj mnie")]
+        [DisplayName("Zapamiętaj mnie*")]
         public bool RememberMe { get; set; }
     }
 }

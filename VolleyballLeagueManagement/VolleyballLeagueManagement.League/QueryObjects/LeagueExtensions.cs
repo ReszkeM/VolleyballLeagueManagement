@@ -58,8 +58,8 @@ namespace VolleyballLeagueManagement.League.QueryObjects
                 SecondTeamId = game.SecondTeamId,
                 SecondTeamName = game.SecondTeam.Name,
                 Date = game.Date,
-                PlayerId = game.MVPId,
-                PlayerName = String.Format("{0} {1}", game.MVP.FirstName, game.MVP.LastName),
+                PlayerId = game.MVPId ?? 0,
+                PlayerName = game.MVP != null ? String.Format("{0} {1}", game.MVP.FirstName, game.MVP.LastName) : String.Empty,
                 Sets = game.Sets.Select(s => new SetViewModel
                 {
                     SetId = s.Id,

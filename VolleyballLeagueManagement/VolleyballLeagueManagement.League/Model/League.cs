@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.League.Model
@@ -10,6 +11,8 @@ namespace VolleyballLeagueManagement.League.Model
         public int RegulationsId { get; set; }
 
         public int OrganizerId { get; set; }
+
+        public int AddressId { get; set; }
 
         public int CalendarId { get; set; }
 

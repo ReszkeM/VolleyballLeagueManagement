@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using VolleyballLeagueManagement.Common.Extensions;
 using VolleyballLeagueManagement.League.Contracts.ViewModels;
 using VolleyballLeagueManagement.League.Domain.Commands;
 using VolleyballLeagueManagement.League.Domain.Services;
@@ -37,9 +40,20 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Table(int leagueId)
+        public ActionResult Table(int? leagueId)
         {
-            var leagueTableService = new LeagueTableService(leagueId);
+            if (!leagueId.HasValue)
+            {
+                var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+                using (var dbContext = new LeagueDataContext())
+                {
+                    var league = dbContext.Leagues.First(l => l.OrganizerId == user.UserId);
+                    leagueId = league.Id;
+                }
+            }
+
+            var leagueTableService = new LeagueTableService((int)leagueId);
             ICollection<TeamInTableViewModel> model = leagueTableService.ExecuteTableOrderRules();
 
             return View(model);
@@ -58,30 +72,55 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult GenerateCalendar()
+        {
+            var model = new GenerateCalendarViewModel();
+            var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+            using (var dbContext = new LeagueDataContext())
+            {
+                var league = dbContext.Leagues.First(l => l.OrganizerId == user.UserId);
+                model.LeagueId = league.Id;
+            }
+
+            return View(model);
+        }
+
         [HttpPost]
         public ActionResult GenerateCalendar(GenerateCalendarCommand command)
         {
             HandleCommand(command, Json("Kalendarz rozgrywek został pomyślnie wygenerowany"));
 
-
             return RedirectToAction("Index", "LeagueManagement");
         }
 
         [HttpGet]
-        public ActionResult EditCalendar(int leagueId)
+        public ActionResult EditCalendar(int? leagueId)
         {
             CalendarViewModel model;
 
+            if (!leagueId.HasValue)
+            {
+                var user = System.Web.HttpContext.Current.GetCurrentUser();
+
+                using (var dbContext = new LeagueDataContext())
+                {
+                    var league = dbContext.Leagues.First(l => l.OrganizerId == user.UserId);
+                    leagueId = league.Id;
+                }
+            }
+
             using (var dbContext = new LeagueDataContext())
             {
-                model = dbContext.Calendars.GetCalendarByLeagueId(leagueId);
+                model = dbContext.Calendars.GetCalendarByLeagueId((int)leagueId);
             }
 
             return View(model);
         }
 
         [HttpGet]
-        public ActionResult AddGameResult(int gameId)
+        public ActionResult UpdateGameResult(int gameId)
         {
             GameViewModel model;
 
@@ -94,19 +133,11 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddGameResult(AddGameResultCommand command)
-        {
-            HandleCommand(command, Json("Wynik meczu został dodany"));
-
-            return RedirectToAction("EditCalendar", new { leagueId = 1 });
-        }
-
-        [HttpPost]
         public ActionResult UpdateGameResult(UpdateGameResultCommand command)
-        {
+        {        
             HandleCommand(command, Json("Wynik meczu został zaktualizowany"));
 
-            return RedirectToAction("EditCalendar", new { leagueId = 1 });
+            return RedirectToAction("EditCalendar");
         }
 
         [HttpGet]
@@ -114,10 +145,10 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         {
             GameViewModel model = null;
 
-//            using (this)
-//            {
-//                
-//            }
+            using (var dbContext = new LeagueDataContext())
+            {
+                model = dbContext.Games.GetGameById(gameId).ToViewModel();
+            }
 
             return View(model);
         }
@@ -127,7 +158,7 @@ namespace VolleyballLeagueManagement.UI.Web.Controllers
         {
             HandleCommand(command, Json("Termin meczu został zaktualizowany"));
 
-            return RedirectToAction("EditCalendar", new { leagueId = 1 });
+            return RedirectToAction("EditCalendar");
         }
 
         // TODO add actions for players stats

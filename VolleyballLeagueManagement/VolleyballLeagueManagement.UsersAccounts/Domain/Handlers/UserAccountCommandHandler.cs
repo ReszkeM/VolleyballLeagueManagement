@@ -193,9 +193,6 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
 
         private void ValidateCommandParameters(AddUserCommand command)
         {
-            if (!Regex.IsMatch(command.Phone, @"^\d+$"))
-                throw new ServerSideException("Phone number is invalid");
-
             if (!IsValidEmail(command.Email))
                 throw new ServerSideException("Email is invalid");
 
@@ -276,23 +273,13 @@ namespace VolleyballLeagueManagement.UsersAccounts.Domain.Handlers
         {
             return new User
             {
-                FirstName = command.FirstName,
-                LastName = command.LastName,
                 Login = command.Login,
                 Password = command.Password.Encrypt(),
                 Email = command.Email,
-                Phone = command.Phone,
                 Role = (Role) command.Role,
                 IsAccountConfirmed = false,
                 ConfirmGuid = new Guid(),
-                Address = new Address
-                {
-                    City = command.City,
-                    Street = command.Street,
-                    HomeNumber = command.HomeNumber,
-                    FlatNumber = command.FlatNumber,
-                    PostCode = command.PostCode
-                }
+                Address = new Address()
             };
         }
 

@@ -1,27 +1,24 @@
 ﻿@model VolleyballLeagueManagement.Management.Contracts.ViewModels.RemoveViewModel
-@{
-    ViewBag.Title = "RemoveLeague";
-}
 
-<h2>@ViewBag.Title</h2>
-
-<p>Are u sure, you want to remove your league?</p>
+<h4>Usuń ligę</h4>
+<hr/>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.Id)
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Delete" class="btn btn-default" />
-        </div>
+    <p style="padding-left: 15px">
+        Jesteś pewien, że chcesz usunąć swoją ligę?
+    </p>
+
+    <div class="form-group row" style="padding-left: 30px">
+        <input type="submit" value="Usuń" class="btn btn-default" />
+    </div>
+
+    <div class="form-group row" style="padding-left: 30px">
+        @Html.ActionLink("Strona ligi", "Index")
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to management", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

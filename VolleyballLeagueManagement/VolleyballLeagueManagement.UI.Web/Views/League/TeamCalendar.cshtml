@@ -1,0 +1,42 @@
+﻿@using VolleyballLeagueManagement.League.QueryObjects
+@model VolleyballLeagueManagement.League.Contracts.ViewModels.TeamCalendarViewModel
+
+<h4>Kalendarz dla drużyny: @Model.TeamName</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Data meczu
+        </th>
+        <th>
+            Nazwa drużyny
+        </th>
+        <th>
+            Wynik
+        </th>
+        <th>
+            Nazwa drużyny
+        </th>
+    </tr>
+    @foreach (var game in Model.Games)
+    {
+        <tr>
+            <td>
+                @game.Date.ToString("F")
+            </td>
+            <td>
+                @game.FirstTeamName
+            </td>
+            <td>
+                @game.Sets.GetGameResult()
+            </td>
+            <td>
+                @game.SecondTeamName
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Powrót do drużyny", "Team", "Review", new { teamId = Model.TeamId }, null)
+</p>

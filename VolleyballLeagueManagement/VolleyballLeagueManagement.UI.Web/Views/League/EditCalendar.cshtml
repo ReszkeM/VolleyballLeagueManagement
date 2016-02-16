@@ -1,0 +1,95 @@
+﻿@using VolleyballLeagueManagement.League.QueryObjects
+@model VolleyballLeagueManagement.League.Contracts.ViewModels.CalendarViewModel
+@Html.HiddenFor(modelItem => Model.CalendarId)
+
+@{
+    string changeResultButtonValue = "Zmień wynik";
+    string addResultButtonValue = "Dodaj wynik";
+    string dateButtonValue = "Zmień datę";
+    string gameNotStarted = "0:0";
+}
+
+@foreach (var round in Model.Rounds)
+{
+    <h4>Runda: @round.Number, data rundy: @round.Date.ToString("D")</h4>
+    <table class="table">
+        <tr>
+            <th>
+                godzina
+            </th>
+            <th>
+                Nazwa drużyny
+            </th>
+            <th>
+                Wynik
+            </th>
+            <th>
+                Nazwa drużyny
+            </th>
+            <th>
+                
+            </th>
+            <th>
+               
+            </th>
+        </tr>
+        @foreach (var game in round.Games)
+        {
+            <tr>
+                <td>
+                    @game.Date.ToString("t")
+                </td>
+                <td>
+                    @game.FirstTeamName
+                </td>
+                <td>
+                    @game.Sets.GetGameResult()
+                </td>
+                <td>
+                    @game.SecondTeamName
+                </td>
+                <td>
+                    @if (game.Sets.GetGameResult() == gameNotStarted)
+                    {
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <input onclick="UpdateDate(@game.GameId)" type="button" value="@dateButtonValue" class="btn btn-default" />
+                            </div>
+                        </div>
+                    }
+                </td>
+                <td>
+                    @{
+                        if (game.Sets.GetGameResult() == gameNotStarted)
+                        {
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <input onclick="UpdateResult(@game.GameId)" type="button" value="@addResultButtonValue" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <input onclick="UpdateResult(@game.GameId)" type="button" value="@changeResultButtonValue" class="btn btn-default" />
+                                </div>
+                            </div>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+<script>
+    function UpdateResult(gameId) {
+        var url = "/League/UpdateGameResult?gameId=" + gameId;
+        window.location.href = url;
+    }
+
+    function UpdateDate(gameId) {
+        var url = "/League/UpdateGameDate?gameId=" + gameId;
+        window.location.href = url;
+    }
+</script>

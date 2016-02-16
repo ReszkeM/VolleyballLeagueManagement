@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
     <Compile Include="Controllers\MessagingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\AccountManagementController.cs" />
@@ -182,6 +183,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.0.js" />
+    <Content Include="Scripts\jquery-2.2.0.min.js" />
     <Content Include="Scripts\libraries\bootstrap.js" />
     <Content Include="Scripts\libraries\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -192,6 +196,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\jquery-2.2.0.min.map" />
     <None Include="Scripts\libraries\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\libraries\jquery-1.10.2.js" />
     <Content Include="Scripts\libraries\jquery-1.10.2.min.js" />
@@ -204,6 +209,7 @@
     <Content Include="Scripts\libraries\respond.js" />
     <Content Include="Scripts\libraries\respond.min.js" />
     <Content Include="Scripts\libraries\_references.js" />
+    <Content Include="Scripts\Actions\Popup.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -255,6 +261,19 @@
     <Content Include="Views\Review\Teams.cshtml" />
     <Content Include="Views\Review\League.cshtml" />
     <Content Include="Views\Review\Team.cshtml" />
+    <Content Include="Views\League\Table.cshtml" />
+    <Content Include="Views\League\EditCalendar.cshtml" />
+    <Content Include="Views\League\UpdateGameResult.cshtml" />
+    <Content Include="Views\League\Calendar.cshtml" />
+    <Content Include="Views\League\Game.cshtml" />
+    <Content Include="Views\Review\Players.cshtml" />
+    <Content Include="Views\League\TeamCalendar.cshtml" />
+    <Content Include="Views\Shared\_RoleMenuPartial.cshtml" />
+    <Content Include="Views\Review\Regulations.cshtml" />
+    <Content Include="Views\TeamManagement\AddPlayer.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
+    <Content Include="Views\League\GenerateCalendar.cshtml" />
+    <Content Include="Views\League\UpdateGameDate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,7 +281,9 @@
     <Folder Include="Views\Messaging\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>

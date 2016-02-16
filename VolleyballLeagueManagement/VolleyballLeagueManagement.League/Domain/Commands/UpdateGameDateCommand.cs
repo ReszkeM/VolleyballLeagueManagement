@@ -7,6 +7,8 @@ namespace VolleyballLeagueManagement.League.Domain.Commands
     {
         public int GameId { get; set; }
 
-        public DateTime NewDate { get; set; }
+        public DateTime Date { get; set; }
+
+        public TimeSpan Time { get; set; }
     }
 }

@@ -1,10 +1,14 @@
-﻿namespace VolleyballLeagueManagement.Common.Enums
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace VolleyballLeagueManagement.Common.Enums
 {
     public enum Role
     {
+        [Display(Name = "Organizator")]
         LeagueManager,
-        LeagueContributor,
+        //LeagueContributor,
+        [Display(Name = "Kapitan")]
         TeamManager,
-        TeamContributor
+        //TeamContributor
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using VolleyballLeagueManagement.Common.Enums;
 
 namespace VolleyballLeagueManagement.League.Model

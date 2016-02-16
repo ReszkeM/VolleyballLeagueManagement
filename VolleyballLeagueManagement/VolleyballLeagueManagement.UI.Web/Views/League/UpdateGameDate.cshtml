@@ -1,0 +1,76 @@
+﻿@model VolleyballLeagueManagement.League.Contracts.ViewModels.GameViewModel
+@Html.HiddenFor(model => model.GameId, new { @id = "gameId" })
+<span id="hiddenDate" style="display: none">@Model.Date.ToString("yyyy-MM-dd")</span>
+<span id="hiddenTime" style="display: none">@Model.Date.ToString("t")</span>
+
+<h4>
+    Zmiana daty spotkania
+</h4>
+<hr />
+
+<div class="col-md-offset-1 col-md-10">
+    <div class="jumbotron" style="background-color: dimgrey; min-height: 250px">
+        <h4 style="margin: -15px 0 15px 0">
+            Zmień datę lub godzinę spotkania
+        </h4>
+        <div class="col-md-offset-2 col-md-10">
+            <label class="col-lg-8">Data:</label>
+            <label>Godzina:</label>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time"></span></span>
+                <input type="date" id="date" class="form-control" style="display: inline; color: black; width: 200px" value="0" min="0" max="50">
+
+                <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-time"></span></span>
+                <input type="time" id="time" class="form-control" style="display: inline; color: black; width: 100px" value="0" min="0" max="50">
+            </div>
+        </div>
+
+        <div class="col-md-10" style="margin-top: 20px">
+            <button id="UpdateResult" class="btn btn-success">
+                Zapisz
+            </button>
+        </div>
+
+        <div class="col-md-10" style="margin-top: 15px">
+            @Html.ActionLink("Powrót do kalendarza", "EditCalendar")
+        </div>
+    </div>
+</div>
+<div class="row"></div>
+
+<script>
+    $(document).ready(function() {
+        var date = $('#hiddenDate').text();
+        var time = $('#hiddenTime').text();
+
+        $('#date').val(date);
+        $('#time').val(time);
+        $('#UpdateResult').click(function () {
+            var gameId = $('#gameId').val();
+            var date = $('#date').val();
+            var time = $('#time').val();
+
+            sendData(gameId, date, time);
+        });
+    });
+
+    function sendData(gameId, date, time) {
+        $.ajax({
+            url: "/League/UpdateGameDate/",
+            type: "POST",
+            data: {
+                command: {
+                    GameId: gameId,
+                    Date: date,
+                    Time: time
+                }
+            },
+            success: function (data) {
+                console.log("udalo sie!");
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>

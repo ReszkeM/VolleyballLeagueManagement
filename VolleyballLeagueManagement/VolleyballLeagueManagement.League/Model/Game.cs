@@ -13,7 +13,7 @@ namespace VolleyballLeagueManagement.League.Model
 
         public int SecondTeamId { get; set; }
 
-        public int MVPId { get; set; }
+        public int? MVPId { get; set; }
 
         public DateTime Date { get; set; }
 
